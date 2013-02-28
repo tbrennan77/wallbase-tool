@@ -11,5 +11,18 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery
+//= require jquery.min
 //= require jquery_ujs
+//= require foundation
 //= require_tree .
+
+$(document).ready(function() {
+  if ($(".alert-box").length){
+    $(".alert-box").hide().slideDown(400,function(){
+      $(this).delay(3000).slideUp(250);
+    });
+  }
+  $(document).foundationAccordion();
+  
+  $("#loading").hide();  
+});

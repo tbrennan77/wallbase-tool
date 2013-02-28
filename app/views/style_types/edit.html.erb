@@ -1,0 +1,8 @@
+<h3>Update: <span class='label'><%= @style_type.name %></span></h3>
+<hr />
+<%= form_for @style_type do |f| %>
+  <%= f.error_messages %>
+  <%= f.text_field :name, placeholder: "Style Type Name" %>
+
+  <%= f.submit "Update style type", class: 'button nice radius' %> <%= link_to "Cancel", style_types_path, class: 'alert button nice radius' %>
+<% end %>

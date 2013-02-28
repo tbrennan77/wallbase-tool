@@ -1,0 +1,8 @@
+<h3>Update: <span class='label'><%= @collection.name %></span></h3>
+<hr />
+<%= form_for @collection do |f| %>
+  <%= f.error_messages %>
+  <%= f.text_field :name, placeholder: "Collection Name" %>
+
+  <%= f.submit "Update Collection", class: 'button nice radius' %> <%= link_to "Cancel", collections_path, class: 'alert button nice radius' %>
+<% end %>

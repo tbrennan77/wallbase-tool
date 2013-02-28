@@ -1,0 +1,13 @@
+<h3>Create a style type</h3>
+<hr />
+
+<%= form_for @style_type do |f| %>
+  <%= f.error_messages %>
+  <%= f.label :collection_id, "Collection" %>
+  <%= f.select :collection_id, Collection.all.map {|c| [c.name, c.id]} %>
+  <br />
+  <br />
+  <%= f.text_field :name, placeholder: "Style Type Name" %>
+  
+  <%= f.submit "Create style type", class: 'success button nice radius' %> <%= link_to "Cancel", style_types_path, class: 'alert button nice radius' %>
+<% end %>

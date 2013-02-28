@@ -1,0 +1,12 @@
+<h3>Style Types</h3>
+<hr />
+<%= link_to "+ Add New Style Type", new_style_type_path, class: 'success button nice radius' %>
+
+<br />
+<br />
+
+<% @style_types.each do |st| %>
+  <div class="row">
+    <div class="six columns panel"><%= st.name %> <div class="right"><%= link_to "Edit", edit_style_type_path(st), class: 'small button nice radius' %> <%= link_to "Delete", style_type_path(st), data: {confirm: "Are you sure?"}, :method => :delete, class: 'small alert button nice radius' %></div></div>
+  </div>
+<% end %>

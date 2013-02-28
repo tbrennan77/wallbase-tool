@@ -1,0 +1,30 @@
+<h3>Collections</h3>
+<hr />
+<%= link_to "+ Add Collection", new_collection_path, class: 'success button nice radius' %>
+<h3 class="subheader">List of Collections</h3>
+
+<ul class="accordion">
+<% @collections.each do |c| %>
+  <% if c == @collections.first %>
+    <li class="active">
+  <% else %>
+    <li>
+  <% end %>
+
+  <div class="title">      
+      <h5><%= c.name %></h5>
+  </div>
+
+  <div class="content">
+    <%= link_to "+ Add New Style", new_collection_path(segment_id: c.id), class: 'success small button nice radius' %>    
+    <%= link_to "Delete Collection", collection_path(c), method: :delete, class: 'right alert small button nice radius', data: {confirm: "Are you sure?"} %>    <%= link_to "Edit Collection", edit_collection_path(c), class: 'right small button nice radius' %>
+    <br />
+    <br />
+    <% #c.style.each do |s| %>
+      <div class="row">
+        <div class="six columns panel">s.style_type.name (0)<div class="right"><%= link_to "Edit", edit_collection_path(c), class: 'small button nice radius' %> <%= link_to "Delete", collection_path(c), data: {confirm: "Are you sure?"}, :method => :delete, class: 'alert small button nice radius' %></div></div>
+      </div>
+    <%# end %>
+  </div>
+<% end %>
+</ul>

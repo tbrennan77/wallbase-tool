@@ -1,14 +1,92 @@
 <!DOCTYPE html>
-<html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7 ]> <html class="ie6" lang="en"> <style>input {display:inline-block !important;}</style><![endif]-->
+<!--[if IE 7 ]>    <html class="ie7" lang="en"> <style>input {display:inline-block !important;}</style><![endif]-->
+<!--[if IE 8 ]>    <html class="ie8" lang="en"> <style>input {display:inline-block !important;}</style><![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--> <html lang="en"> <!--<![endif]-->
 <head>
-  <title>Wallbase</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <meta charset="utf-8" />
+  
+  <!-- Uncomment to make IE8 render like IE7 -->
+  <!-- <meta http-equiv="X-UA-Compatible" content="IE=7" /> -->
+  
+  <!-- Set the viewport width to device width for mobile -->
+  <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width" />  
+  <title>Johnsonite</title>
+  
+  <!-- Included CSS Files -->
+  <%= stylesheet_link_tag    "application" %>
+  
+  <!-- Included JS Files  -->
   <%= javascript_include_tag "application" %>
+  
   <%= csrf_meta_tags %>
+<!--[if (gte IE 9)|!(IE)]><!-->
+  <!-- Apple Web App Stuff -->
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <!-- iPad ICON-->
+  <link href="apple-touch-icon-72x72.png" sizes="72x72" rel="apple-touch-icon">
+  <!-- iPhone (Retina) ICON-->
+  <link href="apple-touch-icon-114x114.png" sizes="114x114" rel="apple-touch-icon">
+  <!-- iPad (Retina) ICON-->
+  <link href="apple-touch-icon-144x144.png" sizes="144x144" rel="apple-touch-icon">
+
+  <!-- iPhone SPLASHSCREEN-->
+  <link href="apple-touch-startup-image-320x460.png" media="(device-width: 320px)" rel="apple-touch-startup-image">
+  <!-- iPhone (Retina) SPLASHSCREEN-->
+  <link href="apple-touch-startup-image-640x920.png" media="(device-width: 320px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image">
+  <!-- iPad (portrait) SPLASHSCREEN-->
+  <link href="apple-touch-startup-image-768x1004.png" media="(device-width: 768px) and (orientation: portrait)" rel="apple-touch-startup-image">
+  <!-- iPad (landscape) SPLASHSCREEN-->
+  <link href="apple-touch-startup-image-748x1024.png" media="(device-width: 768px) and (orientation: landscape)" rel="apple-touch-startup-image">
+  <!-- iPad (Retina, portrait) SPLASHSCREEN-->
+  <link href="apple-touch-startup-image-1536x2008.png" media="(device-width: 1536px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image">
+  <!-- iPad (Retina, landscape) SPLASHSCREEN-->
+  <link href="apple-touch-startup-image-1496x2048.png" media="(device-width: 1536px)  and (orientation: landscape) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image">
+  <!-- END Apple Web App -->
+<!--<![endif]-->
+
 </head>
 <body>
+    <% if flash[:notice] %>
+      <div class='alert-box success'><%= flash[:notice] %></div>
+    <% end %>
+    <% if flash[:error] %>
+      <div class='alert-box error'><%= flash[:error] %></div>
+    <% end %>
 
-<%= yield %>
+    <nav class="top-bar">
+      <ul>
+        <!-- Title Area -->
+        <li class="name">
+          <h1>
+            <%= link_to "Wallbase Chart", root_path %>
+          </h1>
+        </li>        
+      </ul>
 
+      <section>
+        <!-- Left Nav Section -->
+        <ul class="right">
+          <li class="divider show-for-medium-and-up"></li>
+          <li>
+            <%= link_to "Collections", collections_path %>
+          </li>
+        </ul>
+        <ul class="right">
+          <li class="divider show-for-medium-and-up"></li>
+          <li>
+            <%= link_to "Style Types", style_types_path %>
+          </li>
+        </ul>
+
+      </section>
+    </nav>
+  
+<div class="row">
+  <div class="twelve columns">
+    <%= yield %>
+  </div>
+</div>
 </body>
 </html>

@@ -1,0 +1,9 @@
+<h3>Create a Collection area</h3>
+<hr />
+
+<%= form_for @collection do |f| %>
+  <%= f.error_messages %>
+  <%= f.text_field :name, placeholder: "Collection Name" %>
+  
+  <%= f.submit "Create Collection", class: 'success button nice radius' %> <%= link_to "Cancel", collections_path, class: 'alert button nice radius' %>
+<% end %>
