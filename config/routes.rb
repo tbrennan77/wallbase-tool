@@ -2,6 +2,8 @@ Wallbase::Application.routes.draw do
   resources :collections
   resources :style_types, :path => "style-types"
   resources :profiles
+  resources :colors
+  resources :color_palettes, :path => "color-palettes"
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

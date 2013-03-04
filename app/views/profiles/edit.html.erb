@@ -1,10 +1,15 @@
-<h3>Update: <span class='label'><%= @collection_style.name %></span></h3>
+<h3>Create a style for <%= @profile.style_type.name %></h3>
 <hr />
-<%= form_for @collection_style do |f| %>
-  <%= f.error_messages %>
-  <%= f.label :collection_id, "Collection" %>
-  <%= f.select :collection_id, Collection.all.map {|c| [c.name, c.id]} %>
-  <%= f.text_field :name, placeholder: "Style Type Name" %>
 
-  <%= f.submit "Update style type", class: 'button nice radius' %> <%= link_to "Cancel", style_types_path, class: 'alert button nice radius' %>
+<%= form_for @profile do |f| %>
+  <%= f.error_messages %>  
+  <br />
+  <%= f.label :style_type_id, "Style Type" %>
+  <%= f.select :style_type_id, StyleType.all.map {|st| [st.name, st.id]}, :selected => @profile.style_type_id %>
+  <br />
+  <br />
+  <%= f.text_field :uuid, placeholder: "MW-XX-C" %>
+  <%= f.text_field :size, placeholder: "2\"" %>
+  
+  <%= f.submit "Create style type", class: 'success button nice radius' %> <%= link_to "Cancel", collections_path, class: 'alert button nice radius' %>
 <% end %>

@@ -5,7 +5,7 @@ class ProfilesController < ApplicationController
   end
 
   def edit
-    @style_type = StyleType.find params[:id]
+    @profile = Profile.find params[:id]
   end
 
   def create

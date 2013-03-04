@@ -1,0 +1,38 @@
+<h3>Color Palettes</h3>
+<hr />
+<%= link_to "+ Add New Color Palette", new_color_palette_path, class: 'success button nice radius' %>
+
+<br />
+<br />
+
+<ul class="accordion">
+<% @color_palettes.each do |color_palette| %>
+  <% if color_palette == @color_palettes.first %>
+    <li class="active">
+  <% else %>
+    <li>
+  <% end %>
+
+  <div class="title">      
+      <h5><%= color_palette.name %> (<%= pluralize color_palette.colors.count, 'color' %>)</h5>
+  </div>
+
+  <div class="content">
+    <%= link_to "+ Add Color", new_color_path(id: color_palette.id), class: 'success small button nice radius' %>    
+    <%= link_to "Delete Color Palette", color_palette_path(color_palette), method: :delete, class: 'right alert small button nice radius', data: {confirm: "Are you sure?"} %>    <%= link_to "Edit Color Palette", edit_color_palette_path(color_palette), class: 'right small button nice radius' %>
+    <br />
+    <br />
+      <div class="row">
+        <div class="six columns panel">
+          <div class="right"> </div>
+          <ul>
+            <% color_palette.colors.each do |color| %>
+              <li><b><%= color.color_number %></b> <%= color.name %> <b><%= color.color_foundation %></b> <%= in_selects? color %> <%= link_to "Delete", color_path(color), method: :delete, class: 'alert tiny button nice radius right', data: {confirm: "Are you sure?"} %> <%= link_to "Edit", edit_color_path(color), class: 'tiny button nice radius right' %></li>
+              <br />
+            <% end %>
+          </ul>
+        </div>
+      </div>
+  </div>
+<% end %>
+</ul>

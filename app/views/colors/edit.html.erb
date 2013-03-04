@@ -1,0 +1,20 @@
+<h3>Edit <%= @color.name %></h3>
+<hr />
+
+<%= form_for @color do |f| %>
+  <%= f.error_messages %>  
+  <br />
+  <%= f.label :color_palette_id, "Color Palette" %>
+  <%= f.select :color_palette_id, ColorPalette.order(:name).map {|st| [st.name, st.id]}, :selected => @color.color_palette_id %>
+  <br />
+  <br />
+  <%= f.text_field :color_number, placeholder: "Color Number (00)" %>
+  <%= f.text_field :name, placeholder: "Name (Navy Blue)" %>
+  <%= f.text_field :color_foundation, placeholder: "Color Foundation (WG)" %>
+  <%= f.text_field :hex, placeholder: "Hex Value (7DB9E8)" %>
+  <label>
+    <%= f.check_box :selects %> Selects Palette Color?
+  </label>
+  <br />
+  <%= f.submit "Update Color", class: 'success button nice radius' %> <%= link_to "Cancel", color_palettes_path, class: 'alert button nice radius' %>
+<% end %>

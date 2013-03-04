@@ -22,11 +22,11 @@
     <br />
     <% c.style_types.each do |s| %>
       <div class="row">
-        <div class="six columns panel"><%= s.name %> (<%= pluralize s.profiles.count, 'profile' %>)
-          <div class="right"><%= link_to "+ New Profile", new_profile_path(id: s.id), class: 'success small button nice radius' %> <%= link_to "Edit", edit_style_type_path(s), class: 'small button nice radius' %> <%= link_to "Delete", style_type_path(s), data: {confirm: "Are you sure?"}, :method => :delete, class: 'alert small button nice radius' %></div>
+        <div class="ten columns panel"><%= s.name %> (<%= pluralize s.profiles.count, 'profile' %>)
+          <div class="right"><%= link_to "+ New Profile", new_profile_path(id: s.id), class: 'success small button nice radius' %> <%= link_to "Edit Style", edit_style_type_path(s), class: 'small button nice radius' %> <%= link_to "Delete Style", style_type_path(s), data: {confirm: "Are you sure?"}, :method => :delete, class: 'alert small button nice radius' %></div>
           <ul>
             <% s.profiles.each do |p| %>
-              <li><%= p.size %>" <%= p.uuid %> 
+              <li><%= p.size %>" <%= p.uuid %> <%= link_to "Edit", edit_profile_path(p) %> | <%= link_to "Delete", profile_path(p), method: :delete, data: {confirm: "Are you sure?"} %>
               <br /><span style="color: white; border-radius: 18px; text-align: center; padding: 2px 6px; background: purple">A</span> <span style="color: white; border-radius: 18px; text-align: center; padding: 2px 6px; background: green">B</span> <span style="color: white; border-radius: 18px; text-align: center; padding: 2px 6px; background: red">C</span> <span style="color: white; border-radius: 18px; text-align: center; padding: 2px 6px; background: brown">D</span><span style="margin-right: 6px; margin-top: 4px; float: left; -webkit-transform: rotate(45deg); height: 15px; width: 15px; background: #69F;">&nbsp;</span></li>
             <% end %>
           </ul>

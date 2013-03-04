@@ -4,8 +4,9 @@ class CreateColors < ActiveRecord::Migration
       t.references :color_palette
       t.string :color_number
       t.string :name
-      t.string :rgb
+      t.string :hex
       t.string :color_foundation
+      t.boolean :selects
       t.timestamps
     end
   end
