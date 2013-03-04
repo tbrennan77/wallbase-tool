@@ -11,12 +11,28 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130228213600) do
+ActiveRecord::Schema.define(:version => 20130304160512) do
 
   create_table "collections", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "color_palettes", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "colors", :force => true do |t|
+    t.integer  "color_palette_id"
+    t.string   "color_number"
+    t.string   "name"
+    t.string   "rgb"
+    t.string   "color_foundation"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
   end
 
   create_table "profiles", :force => true do |t|
