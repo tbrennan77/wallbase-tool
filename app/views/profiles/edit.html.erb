@@ -1,6 +1,6 @@
-<h3>Update: <span class='label'><%= @style_type.name %></span></h3>
+<h3>Update: <span class='label'><%= @collection_style.name %></span></h3>
 <hr />
-<%= form_for @style_type do |f| %>
+<%= form_for @collection_style do |f| %>
   <%= f.error_messages %>
   <%= f.label :collection_id, "Collection" %>
   <%= f.select :collection_id, Collection.all.map {|c| [c.name, c.id]} %>

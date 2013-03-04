@@ -11,12 +11,21 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130228202844) do
+ActiveRecord::Schema.define(:version => 20130228213600) do
 
   create_table "collections", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "profiles", :force => true do |t|
+    t.integer  "style_type_id"
+    t.float    "size"
+    t.string   "name"
+    t.string   "uuid"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "style_types", :force => true do |t|
