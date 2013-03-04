@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130304160512) do
+ActiveRecord::Schema.define(:version => 20130304181058) do
 
   create_table "collections", :force => true do |t|
     t.string   "name"
@@ -29,10 +29,16 @@ ActiveRecord::Schema.define(:version => 20130304160512) do
     t.integer  "color_palette_id"
     t.string   "color_number"
     t.string   "name"
-    t.string   "rgb"
+    t.string   "hex"
     t.string   "color_foundation"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
+    t.boolean  "selects"
+  end
+
+  create_table "profile_color_palettes", :id => false, :force => true do |t|
+    t.integer "profile_id",       :null => false
+    t.integer "color_palette_id", :null => false
   end
 
   create_table "profiles", :force => true do |t|

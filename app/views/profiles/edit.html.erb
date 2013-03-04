@@ -1,4 +1,4 @@
-<h3>Create a style for <%= @profile.style_type.name %></h3>
+<h3>Edit profile for <%= @profile.style_type.name %></h3>
 <hr />
 
 <%= form_for @profile do |f| %>
@@ -11,5 +11,14 @@
   <%= f.text_field :uuid, placeholder: "MW-XX-C" %>
   <%= f.text_field :size, placeholder: "2\"" %>
   
-  <%= f.submit "Create style type", class: 'success button nice radius' %> <%= link_to "Cancel", collections_path, class: 'alert button nice radius' %>
+  <fieldset>
+    <legend>Choose Palettes:</legend>
+      <% ColorPalette.order(:name).each do |cp| %>
+        <label>
+          <%= check_box_tag "profile[color_palette_ids][]", cp.id, @profile.color_palettes.include?(cp) %> <%= cp.name %>
+        </label><br />
+    <% end %>
+  </fieldset>
+  
+  <%= f.submit "Update Profile", class: 'success button nice radius' %> <%= link_to "Cancel", root_path, class: 'alert button nice radius' %>
 <% end %>
