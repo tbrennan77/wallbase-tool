@@ -1,0 +1,19 @@
+<% @profiles.each do |profile| %>
+  <div class="animated <%= cycle 'fadeInLeft', 'fadeInRight' %> <%= @profiles.count.odd? && profile.id == @profiles.last.id ? 'twelve' : 'six' %> columns" style="margin-bottom: 28px;">
+    <img src="/assets/profile.png" style="width: 120px; height: 150px; margin-right: 15px;" class="left" />
+    <ul class="left">
+      <li style="text-transform: uppercase;"><b><%= profile.style_type.name %></b></li>
+      <li><%= profile.style_type.collection.name %></li>
+      <li><%= profile.uuid %></li>
+      <li>
+        <% profile.color_palettes.ordered.each do |cp| %>
+          <span class="color-palette color-palette-<%= cp.name %>"><%= cp.name == 'Selects' ? '&nbsp;'.html_safe : cp.name %></span>
+        <% end %>
+      </li>
+      <li style="margin-top: 24px;"><%= link_to "View Item", "javascript:void(0)", class: 'view-item' %></li>
+    </ul>
+  </div>
+<% end %>
+
+<%= @empty %>
+<%= debug params %>

@@ -1,6 +1,6 @@
 class ColorPalettesController < ApplicationController
   def index
-    @color_palettes = ColorPalette.order :name
+    @color_palettes = ColorPalette.ordered
   end
 
   def new

@@ -3,7 +3,7 @@
 <%= form_for @style_type do |f| %>
   <%= f.error_messages %>
   <%= f.label :collection_id, "Collection" %>
-  <%= f.select :collection_id, Collection.all.map {|c| [c.name, c.id]} %>
+  <%= f.select :collection_id, Collection.order(:name).map {|c| [c.name, c.id]} %>
   <%= f.text_field :name, placeholder: "Style Type Name" %>
 
   <%= f.submit "Update style type", class: 'button nice radius' %> <%= link_to "Cancel", root_path, class: 'alert button nice radius' %>

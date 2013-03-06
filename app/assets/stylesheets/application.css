@@ -11,6 +11,7 @@
  *= require_self
  *= require foundation_and_overrides
  *= require_tree .
+ *= require animate
  */
 @font-face {
     font-family: 'itc_officina_sans_std_bookRg';

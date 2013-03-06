@@ -4,7 +4,7 @@
 <%= form_for @style_type do |f| %>
   <%= f.error_messages %>
   <%= f.label :collection_id, "Collection" %>
-  <%= f.select :collection_id, Collection.all.map {|c| [c.name, c.id]} %>
+  <%= f.select :collection_id, Collection.order(:name).map {|c| [c.name, c.id]}, selected: params[:collection_id] %>
   <br />
   <br />
   <%= f.text_field :name, placeholder: "Style Type Name" %>

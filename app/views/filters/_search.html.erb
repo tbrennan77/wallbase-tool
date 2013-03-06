@@ -1,0 +1,28 @@
+<%= form_tag root_path, data: {remote: true} do %>
+    <div id="collections">
+      <h6>COLLECTION</h6>
+      <%= select_tag :collection_id, options_for_select(@collections.map {|c| [c.name, c.id]}, selected: params[:collection_id]), include_blank: true %>
+    </div>
+
+    <div id="color">
+      <h6>COLOR</h6>
+      <% @color_palettes.each do |color_palette| %>
+        <label>
+          <%= check_box_tag 'color_palette_ids[]', color_palette.id, (params[:color_palette_ids] && params[:color_palette_ids].include?(color_palette.id.to_s)) %> <%= nice_color_palette_name_for color_palette %>
+        </label>
+      <% end %>
+      <label style="padding:0">
+      </label>
+    </div>
+
+    <div id="material">
+      <h6>MATERIAL</h6>
+      <%= select_tag :collection_name, options_for_select(@collections.map {|c| c.name}) %>
+    </div>
+
+    <div id="style-type">
+      <h6>STYLE</h6>
+      <%= select_tag :style_type_id, options_for_select(@style_types.map {|st| [st.name, st.id]}, selected: params[:style_type_id]), include_blank: true %>
+    </div>  
+
+<% end %>

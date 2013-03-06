@@ -1,0 +1,34 @@
+$(".ajax-container.results").html("<%= escape_javascript(render("results")) %>");
+<% unless params[:floor_types] %>
+  $(".ajax-container.search").html("<%= escape_javascript(render("search")) %>");
+<% end %>
+$(".ajax-container.breadcrumbs").html("<%= escape_javascript(render("breadcrumbs")) %>");
+//$("#loading").fadeOut();
+$('.results').slideDown("slow");
+
+if ($('#area_name').length) {
+  $('#segments').hide();
+  if ($.browser.msie === undefined) {
+    document.getElementById("application_areas").addEventListener('touchmove', function(event) {
+        event.preventDefault();
+        $('#application_areas').slideUp();
+        $('#segments').slideDown();
+      }, false);
+  }
+} else {
+  if ($('.area').length) {    
+    $('#segments').slideUp();
+    $('.area').hide().delay(300).slideDown('fast');
+  if ($.browser.msie === undefined) {
+      document.getElementById("application_areas").addEventListener('touchmove', function(event) {
+        event.preventDefault();
+        $('#application_areas').slideUp();
+        $('#segments').slideDown();
+      }, false);    
+    }
+  }
+}
+
+if ($('.floor_types').length){
+  $('.floor_types.current').delay(300).slideDown();
+}

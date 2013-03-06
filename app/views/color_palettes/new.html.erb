@@ -3,6 +3,11 @@
 
 <%= form_for @color_palette do |f| %>
   <%= f.error_messages %>
+
+  <%= f.label :order_number %>
+  <%= f.select :order_number, 1..ColorPalette.all.count+1, :selected => ColorPalette.all.count+1 %>
+  <br />
+  <br />
   <%= f.text_field :name, placeholder: "Color Palette Name" %>
   
   <%= f.submit "Create Color Palette", class: 'success button nice radius' %> <%= link_to "Cancel", color_palettes_path, class: 'alert button nice radius' %>
