@@ -17,7 +17,7 @@
 
     <div id="material">
       <h6>MATERIAL</h6>
-      <%= select_tag :collection_name, options_for_select(@collections.map {|c| c.name}) %>
+      <%= select_tag :material, options_for_select(@collections.map {|c| c.material}, selected: params[:material]), include_blank: true %>
     </div>
 
     <div id="style-type">

@@ -16,6 +16,17 @@
 //= require foundation
 //= require_tree .
 
+function DeviceIsIpad() {
+  if (navigator.userAgent.toLowerCase().search("ipad") >= 0) { return true; }
+}
+function DeviceIsNotStandalone() {
+  if(!window.navigator.standalone) { return true; }
+}
+function IpadIsNotStandalone() { 
+  if (DeviceIsIpad() && DeviceIsNotStandalone() ) { return true; }
+}
+function DisplayAddToHomeScreenPopup() { $("#addToHomeScreen").show(); }
+
 $(document).ready(function() {
   if ($(".alert-box").length){
     $(".alert-box").hide().slideDown(400,function(){
@@ -25,4 +36,5 @@ $(document).ready(function() {
   $(document).foundationAccordion();
   
   $("#loading").hide();  
+
 });

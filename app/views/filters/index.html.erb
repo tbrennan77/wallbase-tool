@@ -1,113 +1,44 @@
 <script>
-$(document).ready(function() {
-    
-    function DeviceIsIpad() {
-      if (navigator.userAgent.toLowerCase().search("ipad") > -1) {
-        return true;
-      }
-    }
+  $(document).ready(function() {
+      if (IpadIsNotStandalone()) {DisplayAddToHomeScreenPopup();}
 
-    function DeviceIsNotStandalone() {
-      if(!window.navigator.standalone) {
-        return true;
-      }
-    }
-    $('.single-parent').hide()
+      $('.single-parent').hide()
+      appear_class = 'fadeInRightBig'
+      disappear_class = 'fadeOutLeftBig'
 
-    $('.view-item').live('click', function() {
-      $('.result-parent').removeClass('flipInY').addClass('flipOutY');
-      $('.single-parent').removeClass('flipOutY').addClass('flipInY').show();      
-      $('.result-parent').fadeOut();
-    });
+      $('.view-item').live('click', function() {
+        var profile_id = $(this).data('profile-id');
+        $.getScript("<%= root_path %>?profile_id="+profile_id, function() {
+          $('.result-parent').removeClass(appear_class).addClass(disappear_class);
+          $('.single-parent').removeClass(disappear_class).addClass(appear_class).show();      
+          $('.result-parent').fadeOut();
+        })      
+      });
 
-    if ( DeviceIsIpad() && DeviceIsNotStandalone() ) {
-      $("#addToHomeScreen").show();
-    }
+      $('form').live('change', function() {
+        $(this).submit();
+      });
 
-    $('form label.segment_label input').live('change', function() {
-      $('input[name="application_area_id"]').remove();
-      $('input[name="floor_types[floor_type_id][]"]').remove();
-      $('form').submit();
-    });
+      $('.back-to-filter').live('click', function() {      
+        $('.single-parent').removeClass(appear_class).addClass(disappear_class);
+        $('.result-parent').removeClass(disappear_class).addClass(appear_class).show();      
+        $('.single-parent').fadeOut();
+      });
 
-    $('form').live('change', function() {
-      $(this).submit();
-      $('.single-parent').removeClass('flipInY').addClass('flipOutY');
-      $('.result-parent').removeClass('flipOutY').addClass('flipInY').show();      
-      $('.single-parent').fadeOut();
-    });
-
-    $('input[name="application_area_id"]').live('change', function() {      
-      if ($('.floor_types').length) {
-        $('input[name="floor_types[floor_type_id][]"]').remove();
-      }
-      $('form').submit();
-    })
-
-    $('#reset').live('click', function() {
-      $('input[name="floor_types[floor_type_id][]"]').remove();      
-      $('#application_areas').slideUp();
-      $('#segments').slideDown();
-    });
-
-    $('.home_link').live('click', function() {
-      $('form input[name="segment_id"]').remove();
-      $('input[name="floor_types[floor_type_id][]"]').remove();
-      $('form').submit();
-    });
-
-    $('#application_link').live('click', function() {
-      $('#segments').slideUp();
-      $('#application_areas').slideDown();
-    });
-
-    $('.active').live('click', function() {
-      $('#segments').slideUp();
-      $('#application_areas').slideDown();
-    });
-
-    function check_floor_ids() {
-      $('input[name="floor_types[floor_type_id][]"]').prop('checked', true);
-      return false;
-      //$('form').change();
-    }
-
-    function uncheck_floor_ids() {
-      $('input[name="floor_types[floor_type_id][]"]').prop('checked', false);
-      return false;
-    }
-
-    $('input.check_toggle').live('click', function(e) {
-      if ($(this).prop('checked') ) {
-        check_floor_ids();
-      } else {
-        uncheck_floor_ids();
-      }
-      $('input[name="floor_types[floor_type_id][]"]').change();      
-    });
-
-    $('input[name="floor_types[floor_type_id][]"]').live('change', function(e){
-      var floor_class = 'li.li_' + $(this).parent().data('floor-id');
-      if ($(this).prop('checked')) {
-        $(floor_class).removeClass("hide").animate({'marginLeft': '0%'}, 'fast');
-      } else {
-        $(floor_class).each(function() { 
-          $(this).animate(
-            {'marginLeft': '100%'}, 
-            'fast', 
-            function(){
-                $(this).addClass("hide");                
-              });
-        });
-      }
-      return false;
-    })
-});
+      $('label.color-label').live('change', function() {
+        if ($(this).find('input').is(':checked')) {
+          $(this).addClass('active');          
+        } else {
+          $(this).removeClass('active');          
+        }
+      });
+  });
 </script>
 
 
 <style>
 li {list-style-type: none;}
+a.learn-more {font-size: 16px;}
 a#reset:hover {color: white; background: #93cede;}
 a#reset {
   background: #F6F6F6;
@@ -121,8 +52,6 @@ a#reset {
   margin-bottom: 8px;
 }
 
-form input[type="radio"] { display:none; }
-
 form label {
   padding: 20px;  
   color: #3b9fbc;
@@ -135,17 +64,16 @@ form label {
 
 #segments label.segment_label:last-child {border-bottom: 1px solid #DDD;}
 
-form label:hover {color: white; background: #93cede;}
-form label.active { 
-  background: #93cede; /* Old browsers */
-  background: -moz-linear-gradient(top,  #93cede 0%, #75bdd1 41%, #49a5bf 100%); /* FF3.6+ */
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#93cede), color-stop(41%,#75bdd1), color-stop(100%,#49a5bf)); /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(top,  #93cede 0%,#75bdd1 41%,#49a5bf 100%); /* Chrome10+,Safari5.1+ */
-  background: -o-linear-gradient(top,  #93cede 0%,#75bdd1 41%,#49a5bf 100%); /* Opera 11.10+ */
-  background: -ms-linear-gradient(top,  #93cede 0%,#75bdd1 41%,#49a5bf 100%); /* IE10+ */
-  background: linear-gradient(to bottom,  #93cede 0%,#75bdd1 41%,#49a5bf 100%); /* W3C */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#93cede', endColorstr='#49a5bf',GradientType=0 ); /* IE6-9 */
+label.color-label:hover {
   color: white;
+  background: #93cede;
+}
+label.color-label {
+  width: 50px;
+  height: 50px;
+}
+label.active { 
+  border: 3px solid pink;  
 }
 
 #results img {
@@ -159,72 +87,7 @@ h3 {color: black;right; text-align: right; margin-bottom: -17px;}
 ul#heading li {display:inline-block;}
 ul#heading img {vertical-align: middle; margin-right: 25px;margin-top:20px;}  
 .floor_types label {background: white;padding-left: 40px;}
-label.final {padding: 0px; border: 0; border-bottom: 1px solid #DDD;border-radius: 3px;}
-input.check_toggle {
-  float: right;
-}
-#addToHomeScreen img {
-  float: left;
-  position: relative;
-  left: -20px;
-  top: 5px;
-}
-#addToHomeScreen {
-  z-index:99999999;
-  display: none;
-  width: 300px;
-  height: 90px;
-  box-shadow: 0 8px 17px #DDD;
-  border-radius: 8px;
-  opacity: .97;
-  background: #333;
-  color: white;
-  position: absolute;
-  top: 15px;
-  padding: 15px;
-  padding-left: 40px;
-  line-height: 20px;
-  font-family: helvetica;
-  left: 57px;
-  border-top: 1px solid #D8D9DD;
-  background: #52504b; /* Old browsers */
-  background: -moz-linear-gradient(top,  #52504b 0%, #46433c 50%, #423d36 51%, #322d26 100%); /* FF3.6+ */
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#52504b), color-stop(50%,#46433c), color-stop(51%,#423d36), color-stop(100%,#322d26)); /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(top,  #52504b 0%,#46433c 50%,#423d36 51%,#322d26 100%); /* Chrome10+,Safari5.1+ */
-  background: -o-linear-gradient(top,  #52504b 0%,#46433c 50%,#423d36 51%,#322d26 100%); /* Opera 11.10+ */
-  background: -ms-linear-gradient(top,  #52504b 0%,#46433c 50%,#423d36 51%,#322d26 100%); /* IE10+ */
-  background: linear-gradient(to bottom,  #52504b 0%,#46433c 50%,#423d36 51%,#322d26 100%); /* W3C */
-  background-image: url(/assets/button.png), linear-gradient(to bottom,  #52504b 0%,#46433c 50%,#423d36 51%,#322d26 100%);
-  background-repeat: no-repeat;
-}
-#addToHomeScreen:before {
-  content: "";
-  position: absolute;
-  top: -9px;
-  left: 130px;
-  border-bottom: 10px solid #52504b;
-  border-left: 10px solid transparent;
-  border-right: 10px solid transparent;
-}
-#area_name li {
-  list-style-type: none;  
-  margin-bottom: 12px;
-}
-#area_name a li img {
-  border:none;
-  width: 64px;
-  height: 64px;
-  vertical-align: middle;
-  margin-right: 12px;
-}
-#area_name a li:hover {
-  color: white;
-  background: #93cede;
-}
-#area_name a {
-  padding: 8px;  
-  color: #555;
-}
+
 </style>
 <style media="all and (orientation:portrait)">#addToHomeScreen{left: 65px;}</style>
 
@@ -238,11 +101,12 @@ input.check_toggle {
 <ul id="heading">
   <li><a class="home_link" href="javascript:void(0)"><%= image_tag "logo.gif" %></a></li>
   <li><a class="home_link" href="javascript:void(0)"><h3>Wallbase Chart</h3></a></li>
+  <li><%= link_to "Tmp Admin Link", collections_path %></li>
 </ul>
 <hr />
 <div class="row">
   <div class="four columns">
-    <%= link_to "Tmp Admin Link", collections_path %>
+    <%= link_to "Reset", root_path, id: 'reset' %>
     <h4>FILTER BY:</h4>    
     <div id="search" class="ajax-container search">
       <%= render 'search' %>
@@ -256,18 +120,7 @@ input.check_toggle {
     </div>
   </div>
 
-  <div class="single-parent animated eight columns animated">
-    <h4>MANDALY</h4>
-    <div class="six columns" style="margin-bottom: 28px;">
-    <img src="/assets/profile.png" style="width: 120px; height: 150px; margin-right: 15px;" class="left">
-    <ul class="left">
-      <li style="text-transform: uppercase;"><b>Attaché</b></li>
-      <li>Millwork - Wallbase</li>
-      <li>MW-XX-C</li>
-      <li>
-          <span class="color-palette color-palette-A">A</span>
-          <span class="color-palette color-palette-C">C</span>
-      </li>      
-    </ul>
+  <div class="single-parent eight columns animated">
+    <div id="details" class="ajax-container details">      
+    </div>
   </div>
-</div>

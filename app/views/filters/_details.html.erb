@@ -1,0 +1,87 @@
+<div class="row">
+      <div class="twelve columns">
+        <h4><%= @profile.style_type.name %></h4>
+        <div class="three columns">
+          <img src="/assets/3d.png" style="width: 120px; height: 150px; margin-right: 15px;" class="left">
+        </div>
+        <div class="three columns">
+          <img src="/assets/profile.png" style="width: 120px; height: 150px; margin-right: 15px;" class="left">
+        </div>
+        <div class="six columns" style="text-align:right;">
+          <%= link_to "Add #{pluralize 3, 'sample'} to cart", root_path, class: 'nice button radius full-width' %>
+          <br />
+          <br />
+          <ul>
+            <li><h5>Colors you have selected:</h5></li>
+            <li><label>76 Cinnamon <input type="checkbox" checked="checked" /></label></li>
+            <li><label>72 Harbor <input type="checkbox" checked="checked" /></label></li>
+            <li><label>141 Lipstick<input type="checkbox" checked="checked" /></label></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="twelve columns">
+        <h4>Colors or Patterns</h4>        
+      </div>
+    </div>
+    <div class="row">
+      <div class="twelve columns">
+        <ul class="accordion">
+        <% @profile.color_palettes.each do |c| %>  
+          <% if c == @profile.color_palettes.first %>
+            <li class="active">
+          <% else %>
+            <li>
+          <% end %>
+     
+          <div class="title">      
+              <h5><%= c.name %></h5>
+          </div>
+
+          <div class="content">
+            <div class="row">
+            <ul>
+            <% 5.times do %>
+            <% c.colors.each do |color| %>
+                <li style="display:inline-block;margin: 0 8px; width: 50px;">               
+                  <label class='color-label' style="background: #<%= color.hex %>">
+                    <input type="checkbox" style='display:none'/>
+                  </label>
+                </li>
+            <% end %>
+            <% end %>
+            </ul>
+            </div>
+          </div>
+          </li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+    <div class="row">
+      <div class="twelve columns">
+        <h4><%= @profile.collection.name %> Description</h4>
+        <p>Fusce accumsan velit a lectus dapibus accumsan. Sed faucibus tellus imperdiet diam porttitor rhoncus. Nunc et massa diam, ut porttitor magna. Sed nisl est, fermentum in tempus at, consectetur et enim. Quisque laoreet gravida erat eget convallis. Vestibulum et arcu eu enim tincidunt consectetur. Aliquam a h.</p>
+        <p> laoreet gravida erat eget convallis. Vestibulum et arcu eu enim tincidunt consectetur. Aliquam a sem orci. Vestibulum eget metus vitae eros fringilla vestibulum vitae sit amet tortor. Nunc vitae velit nunc. Nullam lorem dui, mollis in mollis non, ullamcorper sit amet sem. Nullam ultrices malesuada nibh.</p>
+      </div>
+    </div>
+    <div class="row" style="border: 2px solid #333">
+      <div class="three columns">
+        <h4>Specs</h4>
+        <h5>Recycled Content</h5>
+        <p>Fusce accumsan velit a lectus dapibus accumsan. Sed faucibus tellus imperdiet diam porttitor rhoncus. </p>
+        <h5>IAQ</h5>
+        <p>Fusce accumsan velit a lectus dapibus accumsan.</p>
+      </div>
+    </div>
+     <div class="row">
+      <h5>Other <%= @profile.collection.name %> Products <%= link_to "Learn more about #{@profile.collection.name}", root_path, class: 'right learn-more', target: :_blank %></h5>
+      <ul>
+        <li style="border: 1px solid #333; padding: 15px; display:block;display: inline-block; width: 100px; height: 100px; margin: 0 14px;"></li>
+        <li style="border: 1px solid #333; padding: 15px; display:block;display: inline-block; width: 100px; height: 100px; margin: 0 14px;"></li>
+        <li style="border: 1px solid #333; padding: 15px; display:block;display: inline-block; width: 100px; height: 100px; margin: 0 14px;"></li>
+        <li style="border: 1px solid #333; padding: 15px; display:block;display: inline-block; width: 100px; height: 100px; margin: 0 14px;"></li>
+        <li style="border: 1px solid #333; padding: 15px; display:block;display: inline-block; width: 100px; height: 100px; margin: 0 14px;"></li>
+      <ul>
+    </div>
