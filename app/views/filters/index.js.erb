@@ -1,2 +1,5 @@
-$(".ajax-container.results").html("<%= escape_javascript(render("results")) %>");
-$(".ajax-container.details").html("<%= escape_javascript(render("details")) %>");
+<% if params[:profile_id].present? %>
+  $(".ajax-container.details").html("<%= escape_javascript(render("details")) %>");
+<% else %>
+  $(".ajax-container.results").html("<%= escape_javascript(render("results")) %>");
+<% end %>

@@ -4,20 +4,18 @@ class FiltersController < ApplicationController
     @color_palettes = ColorPalette.ordered
     @style_types = StyleType.order(:name)
     
-    if params[:profile_id].present?
-      @profile = Profile.find params[:profile_id]
-    end
+    @profile = Profile.find params[:profile_id] || Profile.first #if params[:profile_id].present?
 
-    filter = Profile.scoped include: :style_type
-
+    filter = StyleType.scoped
+    
     # Filter collections
     if params[:collection_id].present?
-      filter = filter.scoped conditions: ['style_types.collection_id = ?', params[:collection_id]]    
+      filter = filter.scoped conditions: ['collection_id = ?', params[:collection_id]]    
     end
 
     # Filter styles
     if params[:style_type_id].present?
-      filter = filter.scoped conditions: ['style_type_id = ?', params[:style_type_id]]
+      filter = filter.scoped conditions: ['id = ?', params[:style_type_id]]
     end
 
     # Filter materials
@@ -34,11 +32,11 @@ class FiltersController < ApplicationController
                    WHERE profile_id = profiles.id
                    AND color_palette_id = ?)
         END_SQL
-        filter = filter.scoped conditions: [sql, cpid]
+        filter = filter.scoped include: :profiles, conditions: [sql, cpid]
       end
     end
 
-    @profiles = filter 
-    @empty = "<h1 class='animated bounceInDown' style='margin-top: 40%;text-align:center'>There were no results</h1>".html_safe if @profiles.blank?      
+    @style_types = filter 
+    @empty = "<h1 class='animated bounceInDown' style='margin-top: 40%;text-align:center'>There were no results</h1>".html_safe if @style_types.blank?      
   end
 end

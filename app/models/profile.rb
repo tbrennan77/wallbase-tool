@@ -7,4 +7,8 @@ class Profile < ActiveRecord::Base
   has_many :color_palettes, through: :profile_color_palettes
 
   scope :ordered, order("id")
+
+  def name
+    self.uuid.gsub('XX', self.size.to_i.to_s)
+  end
 end

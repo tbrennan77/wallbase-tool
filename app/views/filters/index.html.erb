@@ -1,22 +1,32 @@
 <script>
   $(document).ready(function() {
+      function updateCount() {
+        count = $('#selectedColors').children().length-1;
+        word = 'samples'
+        if (count == 1) {
+          word = 'sample';
+        }
+
+        $('#addLink').text("Add "+count+" "+word+" to cart");
+      }
+
       if (IpadIsNotStandalone()) {DisplayAddToHomeScreenPopup();}
 
       $('.single-parent').hide()
       appear_class = 'fadeInRightBig'
-      disappear_class = 'fadeOutLeftBig'
+      disappear_class = 'fadeOutLeftBig'      
 
-      $('.view-item').live('click', function() {
-        var profile_id = $(this).data('profile-id');
-        $.getScript("<%= root_path %>?profile_id="+profile_id, function() {
-          $('.result-parent').removeClass(appear_class).addClass(disappear_class);
-          $('.single-parent').removeClass(disappear_class).addClass(appear_class).show();      
-          $('.result-parent').fadeOut();
-        })      
+      $('form#search-form').live('change', function() {
+        $(this).submit();
+        $.ajax({complete: function () {$(document).foundation();}});
       });
 
-      $('form').live('change', function() {
+      $('form.details-form').live('change', function() {
         $(this).submit();
+        $('.result-parent').removeClass(appear_class).addClass(disappear_class);
+        $('.single-parent').removeClass(disappear_class).addClass(appear_class).show();      
+        $('.result-parent').fadeOut();        
+        $.ajax({complete: function () {$(document).foundation();}});        
       });
 
       $('.back-to-filter').live('click', function() {      
@@ -27,16 +37,25 @@
 
       $('label.color-label').live('change', function() {
         if ($(this).find('input').is(':checked')) {
-          $(this).addClass('active');          
+          $(this).addClass('active');
+          $('#selectedColors').append('<li><label>141 Lipstick<input type="checkbox" checked="checked" /></label></li> ');
+          updateCount();
         } else {
-          $(this).removeClass('active');          
+          $(this).removeClass('active');
+          $('#selectedColors li:last').remove();
+          updateCount();
         }
       });
+
+
   });
 </script>
 
 
 <style>
+div.filter-select, div.filter-select ul  {
+  width: 100% !important;
+}
 li {list-style-type: none;}
 a.learn-more {font-size: 16px;}
 a#reset:hover {color: white; background: #93cede;}
@@ -52,7 +71,7 @@ a#reset {
   margin-bottom: 8px;
 }
 
-form label {
+form #color label {
   padding: 20px;  
   color: #3b9fbc;
   background: #F6F6F6;
@@ -87,7 +106,7 @@ h3 {color: black;right; text-align: right; margin-bottom: -17px;}
 ul#heading li {display:inline-block;}
 ul#heading img {vertical-align: middle; margin-right: 25px;margin-top:20px;}  
 .floor_types label {background: white;padding-left: 40px;}
-
+ul#selectedColors {height: 192px; overflow: hidden;}
 </style>
 <style media="all and (orientation:portrait)">#addToHomeScreen{left: 65px;}</style>
 
@@ -122,5 +141,6 @@ ul#heading img {vertical-align: middle; margin-right: 25px;margin-top:20px;}
 
   <div class="single-parent eight columns animated">
     <div id="details" class="ajax-container details">      
+      <%= render 'details' %>
     </div>
   </div>

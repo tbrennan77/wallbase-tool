@@ -33,8 +33,9 @@ $(document).ready(function() {
       $(this).delay(3000).slideUp(250);
     });
   }
-  $(document).foundationAccordion();
+  $(document).foundation();
   
   $("#loading").hide();  
 
 });
+$(document).foundation();
