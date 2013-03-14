@@ -13,10 +13,11 @@
         </li>
       <% end %>
       
-      <li style="margin-top: 24px;">
+      <li style="margin-top: 30px;">
         <%= form_tag root_path, class: 'details-form custom', data: {remote: true} do %>
           <%= label_tag :profile_id, nil, for: 'detail-select', class: 'hide' %>
           <%= select_tag :profile_id, options_for_select(style_type.profiles.map {|pf| [pf.name, pf.id]} ), prompt: 'select a profile', id: 'detail-select', class: 'small' %>
+          <div class="custom dropdown small"><a href="#" class="current">select a profile</a><a href="#" class="selector"></a><ul><li class="selected">select a profile</li><li>MW-7-C</li></ul></div>
         <% end %>
       </li>
     </ul>

@@ -1,8 +1,7 @@
 class FiltersController < ApplicationController
   def index
     @collections = Collection.order(:name)
-    @color_palettes = ColorPalette.ordered
-    @style_types = StyleType.order(:name)
+    @color_palettes = ColorPalette.ordered    
     
     @profile = Profile.find params[:profile_id] || Profile.first #if params[:profile_id].present?
 
@@ -15,7 +14,7 @@ class FiltersController < ApplicationController
 
     # Filter styles
     if params[:style_type_id].present?
-      filter = filter.scoped conditions: ['id = ?', params[:style_type_id]]
+      filter = filter.scoped conditions: ['style_types.id = ?', params[:style_type_id]]
     end
 
     # Filter materials
@@ -29,7 +28,7 @@ class FiltersController < ApplicationController
         sql = <<-END_SQL
           EXISTS ( SELECT 1
                    FROM profile_color_palettes
-                   WHERE profile_id = profiles.id
+                   WHERE profile_id = profiles.id                   
                    AND color_palette_id = ?)
         END_SQL
         filter = filter.scoped include: :profiles, conditions: [sql, cpid]

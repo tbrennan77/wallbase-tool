@@ -9,7 +9,7 @@
 
         $('#addLink').text("Add "+count+" "+word+" to cart");
       }
-
+      $('select').hide();
       if (IpadIsNotStandalone()) {DisplayAddToHomeScreenPopup();}
 
       $('.single-parent').hide()
@@ -18,7 +18,7 @@
 
       $('form#search-form').live('change', function() {
         $(this).submit();
-        $.ajax({complete: function () {$(document).foundation();}});
+        
       });
 
       $('form.details-form').live('change', function() {
@@ -26,7 +26,7 @@
         $('.result-parent').removeClass(appear_class).addClass(disappear_class);
         $('.single-parent').removeClass(disappear_class).addClass(appear_class).show();      
         $('.result-parent').fadeOut();        
-        $.ajax({complete: function () {$(document).foundation();}});        
+        $.ajax({complete: function () {$(document).foundation();}});
       });
 
       $('.back-to-filter').live('click', function() {      

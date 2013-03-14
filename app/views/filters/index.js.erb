@@ -2,4 +2,6 @@
   $(".ajax-container.details").html("<%= escape_javascript(render("details")) %>");
 <% else %>
   $(".ajax-container.results").html("<%= escape_javascript(render("results")) %>");
+  $('select').hide();
+  $.ajax({complete: function () {$(document).foundation();}});  
 <% end %>
