@@ -119,16 +119,17 @@ li.name {text-transform: uppercase;}
 </style>
 <style media="all and (orientation:portrait)">#addToHomeScreen{left: 65px;}</style>
 
+<!--
 <div id="addToHomeScreen">
   <img src="/assets/button.png" />
   Tap this icon.<br />
   Then '<b>Add to Home Screen</b>'<br />
   to install.
 </div>
-
+-->
 <div class="row">
   <div class="large-4 columns">
-    <%= link_to "Reset", root_path, id: 'reset' %>
+    <%= link_to "Reset", 'http://www.johnsonite.com/Tools/Wallbase.aspx', id: 'reset' %>
     <h4>FILTER BY:</h4>    
     <div id="search" class="ajax-container search">
       <%= render 'search' %>
