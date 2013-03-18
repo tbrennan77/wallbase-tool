@@ -1,3 +1,31 @@
+<script>
+$(document).ready( function() {
+  $('.accordion div.content').hide();  
+
+  $('.accordion li div.title').live('click', function() {
+    $(this).next('div.content').slideToggle();
+  });
+});
+</script>
+<style>
+li {list-style-type: none;}
+div.title:hover {cursor: pointer;}
+div.title {
+  border: 1px solid #CCC;
+  padding: 10px;
+  background: #EEE;
+}
+div.content {
+  border: 1px solid #CCC;
+  padding: 18px;
+}
+.red {
+  color: red;
+}
+.panel {
+  min-height: 117px;
+}
+</style>
 <%= link_to "+ Add Collection", new_collection_path, class: 'success button nice radius right' %>
 <h3 class="subheader">List of Collections</h3>
 
@@ -23,11 +51,11 @@
     <br />
     <% c.style_types.each do |s| %>
       <div class="row">
-        <div class="ten columns panel"><%= s.name %> (<%= pluralize s.profiles.count, 'profile' %>)
+        <div class="large-11 columns panel"><%= s.name %> (<%= pluralize s.profiles.count, 'profile' %>)
           <div class="right"><%= link_to "+ Add Profile", new_profile_path(id: s.id), class: 'success small button nice radius' %> <%= link_to "Edit Style", edit_style_type_path(s), class: 'small button nice radius' %> <%= link_to "Delete Style", style_type_path(s), data: {confirm: "Are you sure?"}, :method => :delete, class: 'alert small button nice radius' %></div>
           <ul>
             <% s.profiles.each do |p| %>
-              <li><%= p.size %>" <%= p.uuid %> <%= link_to "Edit", edit_profile_path(p) %> | <%= link_to "Delete", profile_path(p), method: :delete, data: {confirm: "Are you sure?"} %>
+              <li><%= p.size %>" <%= p.uuid %> <%= link_to "Edit", edit_profile_path(p) %> | <%= link_to "Delete", profile_path(p), class: 'red', method: :delete, data: {confirm: "Are you sure?"} %>
               <br />
               <% p.color_palettes.order(:name).each do |cp| %>
                 <span class="color-palette color-palette-<%= cp.name %>"><%= cp.name == 'Selects' ? '&nbsp;'.html_safe : cp.name %></span>

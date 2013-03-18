@@ -1,4 +1,6 @@
 class ColorPalettesController < ApplicationController
+  before_filter :authenticate
+
   def index
     @color_palettes = ColorPalette.ordered
   end

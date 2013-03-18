@@ -1,5 +1,6 @@
 <% if params[:profile_id].present? %>
   $(".ajax-container.details").html("<%= escape_javascript(render("details")) %>");
+  $(window).trigger("resize");
 <% else %>
   $(".ajax-container.results").html("<%= escape_javascript(render("results")) %>");
   $('select').hide();

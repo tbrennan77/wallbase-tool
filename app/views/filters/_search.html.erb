@@ -1,7 +1,6 @@
 <%= form_tag root_path, id: 'search-form', class: 'custom', data: {remote: true} do %>
     <div id="collections">
-      <h6>COLLECTION</h6>
-      <%= select_tag :collection_id, options_for_select(@collections.map {|c| [c.name, c.id]}, selected: params[:collection_id]), include_blank: true, class: ' filter-select full-width' %>
+      <%= select_tag :collection_id, options_for_select(@collections.map {|c| [c.name, c.id]}, selected: params[:collection_id]), prompt: 'select a collection', class: ' filter-select full-width' %>
     </div>
 
     <div id="color">
@@ -15,14 +14,13 @@
       </label>
     </div>
 
+    <br />
     <div id="material">
-      <h6>MATERIAL</h6>
-      <%= select_tag :material, options_for_select(@collections.map {|c| c.material}, selected: params[:material]), include_blank: true, class: ' filter-select full-width' %>
+      <%= select_tag :material, options_for_select(@collections.map {|c| c.material}, selected: params[:material]), prompt: 'select a material', class: ' filter-select full-width' %>      
     </div>
 
     <div id="style-type">
-      <h6>STYLE</h6>
-      <%= select_tag :style_type_id, options_for_select(@style_types.map {|st| [st.name, st.id]}, selected: params[:style_type_id]), include_blank: true, class: ' filter-select full-width' %>
+      <%= select_tag :style_type_id, options_for_select(@style_types.map {|st| [st.name, st.id]}, selected: params[:style_type_id]), prompt: 'select a style', class: ' filter-select full-width' %>
     </div>  
 
 <% end %>

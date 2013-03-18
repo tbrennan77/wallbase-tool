@@ -13,6 +13,8 @@
  *= require_tree .
  *= require animate
  */
+
+@import 'foundation';
 @font-face {
     font-family: 'itc_officina_sans_std_bookRg';
     src: url('officinasansstd-book-webfont.eot');
@@ -43,7 +45,7 @@
 }
 
 nav.top-bar {
-  background-image: url(web_sprite_bgs.png);
+  margin-bottom: 30px;
 }
 
 .panel {margin-left: 15px !important;}

@@ -20,6 +20,7 @@ group :assets do
   gem 'zurb-foundation', '~> 4.0.0'
 end
 
+gem 'modernizr-rails'
 gem 'jquery-rails'
 gem "animate-rails"
 

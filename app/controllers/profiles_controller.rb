@@ -1,4 +1,5 @@
 class ProfilesController < ApplicationController
+  before_filter :authenticate
 
   def new    
     @profile = Profile.new style_type_id: params[:id]

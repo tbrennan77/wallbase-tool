@@ -14,6 +14,7 @@
 //= require jquery.min
 //= require jquery_ujs
 //= require foundation
+//= require modernizr
 //= require_tree .
 
 function DeviceIsIpad() {

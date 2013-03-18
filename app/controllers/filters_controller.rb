@@ -3,26 +3,27 @@ class FiltersController < ApplicationController
     @collections = Collection.order(:name)
     @color_palettes = ColorPalette.ordered    
     
-    @profile = Profile.find params[:profile_id] || Profile.first #if params[:profile_id].present?
+    @profile = Profile.find params[:profile_id] if params[:profile_id].present?
 
-    filter = StyleType.scoped
-    
-    # Filter collections
+    # begin filtering
+    style_type_filter = StyleType.scoped
+
+    # collections
     if params[:collection_id].present?
-      filter = filter.scoped conditions: ['collection_id = ?', params[:collection_id]]    
+      style_type_filter = style_type_filter.scoped conditions: ['collection_id = ?', params[:collection_id]]    
     end
 
-    # Filter styles
+    # styles
     if params[:style_type_id].present?
-      filter = filter.scoped conditions: ['style_types.id = ?', params[:style_type_id]]
+      style_type_filter = style_type_filter.scoped conditions: ['style_types.id = ?', params[:style_type_id]]
     end
 
-    # Filter materials
+    # materials
     if params[:material].present?
-      filter = filter.scoped include: :collection, conditions: ['collections.material LIKE ?', params[:material]]
+      style_type_filter = style_type_filter.scoped include: :collection, conditions: ['collections.material LIKE ?', params[:material]]
     end
 
-    # Filter color palettes
+    # color palettes
     if params[:color_palette_ids].present?
       params[:color_palette_ids].each do |cpid|
         sql = <<-END_SQL
@@ -31,11 +32,10 @@ class FiltersController < ApplicationController
                    WHERE profile_id = profiles.id                   
                    AND color_palette_id = ?)
         END_SQL
-        filter = filter.scoped include: :profiles, conditions: [sql, cpid]
+        style_type_filter = style_type_filter.scoped include: :profiles, conditions: [sql, cpid]
       end
     end
 
-    @style_types = filter 
-    @empty = "<h1 class='animated bounceInDown' style='margin-top: 40%;text-align:center'>There were no results</h1>".html_safe if @style_types.blank?      
+    @style_types = style_type_filter.limit(8)
   end
 end

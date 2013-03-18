@@ -1,4 +1,7 @@
 class ColorsController < ApplicationController
+  
+  before_filter :authenticate
+
   def new    
     @color = Color.new color_palette_id: params[:id]
   end
@@ -19,7 +22,7 @@ class ColorsController < ApplicationController
   def update
     @color = Color.find params[:id]
     if @color.update_attributes params[:color]
-      redirect_to color_palettes_path, notice: 'Updated Color'
+      redirect_to color_palettes_path(color_palette_id: @color.color_palette_id), notice: 'Updated Color'
     else
       render :edit
     end

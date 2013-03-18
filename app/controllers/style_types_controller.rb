@@ -1,4 +1,5 @@
 class StyleTypesController < ApplicationController
+  before_filter :authenticate
 
   def index
     @style_types = StyleType.order :name
@@ -15,7 +16,7 @@ class StyleTypesController < ApplicationController
   def create
     @style_type = StyleType.new params[:style_type]
     if @style_type.save
-      redirect_to root_path, notice: 'Create Style Type'
+      redirect_to collections_path, notice: 'Create Style Type'
     else
       render :new
     end
@@ -25,7 +26,7 @@ class StyleTypesController < ApplicationController
     @style_type = StyleType.find params[:id]
 
     if @style_type.update_attributes params[:style_type]
-      redirect_to root_path, notice: 'Updated Style Type'
+      redirect_to collections_path, notice: 'Updated Style Type'
     else
       render :edit
     end
@@ -35,6 +36,6 @@ class StyleTypesController < ApplicationController
     style_type = StyleType.find params[:id]
     style_type.destroy
     flash[:error] = "Deleted Style Type"
-    redirect_to root_path
+    redirect_to collections_path
   end
 end

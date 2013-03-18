@@ -1,4 +1,5 @@
 class CollectionsController < ApplicationController
+  before_filter :authenticate
 
   def index
     @collections = Collection.order :name
@@ -15,7 +16,7 @@ class CollectionsController < ApplicationController
   def create
     @collection = Collection.new params[:collection]
     if @collection.save
-      redirect_to root_path, notice: 'Create Collection'
+      redirect_to collections_path, notice: 'Create Collection'
     else
       render :new
     end
@@ -25,7 +26,7 @@ class CollectionsController < ApplicationController
     @collection = Collection.find params[:id]
 
     if @collection.update_attributes params[:collection]
-      redirect_to root_path, notice: 'Updated Collection'
+      redirect_to collections_path, notice: 'Updated Collection'
     else
       render :edit
     end
@@ -35,6 +36,6 @@ class CollectionsController < ApplicationController
     colleciton = Collection.find params[:id]
     colleciton.destroy
     flash[:error] = "Deleted Collection"
-    redirect_to root_path
+    redirect_to collections_path
   end
 end

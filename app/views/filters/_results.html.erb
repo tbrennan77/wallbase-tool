@@ -1,29 +1,43 @@
-<% @style_types.each do |style_type| %>
-  <div class="animated <%= cycle 'fadeInLeft', 'fadeInRight' %> <%= @style_types.count.odd? && style_type.id == @style_types.last.id ? 'twelve' : 'six' %> columns" style="margin-bottom: 28px;">
-    <img src="/assets/profile.png" style="width: 120px; height: 150px; margin-right: 15px;" class="left" />
-    <ul class="left">
-      <li style="text-transform: uppercase;"><b><%= style_type.name %> (<%= style_type.collection.material %>)</b></li>      
-      <li><%= style_type.collection.name %></li>
-      <% style_type.profiles.each do |p| %>
-        <li>
-          <%= p.name %><br />
-          <% p.color_palettes.ordered.each do |cp| %>
-            <span class="color-palette color-palette-<%= cp.name %>"><%= cp.name == 'Selects' ? '&nbsp;'.html_safe : cp.name %></span>
-          <% end %>
-        </li>
-      <% end %>
-      
-      <li style="margin-top: 30px;">
-        <%= form_tag root_path, class: 'details-form custom', data: {remote: true} do %>
-          <%= label_tag :profile_id, nil, for: 'detail-select', class: 'hide' %>
-          <%= select_tag :profile_id, options_for_select(style_type.profiles.map {|pf| [pf.name, pf.id]} ), prompt: 'select a profile', id: 'detail-select', class: 'small' %>
-          <div class="custom dropdown small"><a href="#" class="current">select a profile</a><a href="#" class="selector"></a><ul><li class="selected">select a profile</li><li>MW-7-C</li></ul></div>
+<% unless @style_types.blank? %>
+
+  <% @style_types.each do |style_type| %>
+    <div class='row'>
+      <div class="animated fadeInLeft large-6 columns">
+        <img src="/assets/profile.png" style="width: 120px; height: 150px; margin-right: 15px;" class="left has-tip" title="Choose a profile from the dropdown to see more details!" data-tooltip />
+        <ul class="left">
+          <li class="name"><b><%= style_type.name.upcase %> (<%= style_type.collection.material.upcase %>)</b></li>      
+          <li><%= style_type.collection.name %></li>
+          <li style="margin-top: 30px;">
+            <%= form_tag root_path, class: 'details-form custom', data: {remote: true} do %>
+              <%= label_tag :profile_id, nil, for: 'detail-select', class: 'hide' %>
+              <%= select_tag :profile_id, options_for_select(style_type.profiles.map {|pf| [pf.name, pf.id]} ), prompt: 'select a profile', id: 'detail-select', class: 'small' %>
+              <div class="custom dropdown small"><a href="#" class="current">select a profile</a><a href="#" class="selector"></a><ul><li class="selected">select a profile</li><li>MW-7-C</li></ul></div>
+            <% end %>
+          </li>
+        </ul>
+      </div>
+      <div class="animated fadeInRight large-6 columns">
+        <% style_type.profiles.each do |p| %>
+          <div class="row profile-row">
+            <div class="large-4 columns">
+              <%= p.name %>
+            </div>
+            <div class="large-8 columns">
+              <% p.color_palettes.ordered.each do |cp| %>
+                <span class="color-palette color-palette-<%= cp.name %>"><%= cp.name == 'Selects' ? '&nbsp;'.html_safe : cp.name %></span>
+              <% end %>              
+            </div>
+          </div>
+          <br />
         <% end %>
-      </li>
-    </ul>
-  </div>
+      </div>
+    </div>
+    <br style="clear:both" />
+    <hr />
+  <% end %>
+
+<% else %>
+
+  <h1 class='animated bounceInDown' style='margin-top: 40%;text-align:center'>There were no results</h1>
+
 <% end %>
-
-
-
-<%= @empty if @empty %>

@@ -1,44 +1,39 @@
-<div class="row">
-      <div class="twelve columns">
+    <div class="row">
+      <div class="large-12 columns">
+        <%= link_to "« back to filter", "javascript:void(0)", class: 'back-to-filter right small button radius secondary' %>
         <h4><%= @profile.style_type.name %></h4>
-        <div class="three columns">
-          <img src="/assets/3d.png" style="width: 120px; height: 150px; margin-right: 15px;" class="left">
+        <h5 class="subheader"><%= @profile.collection.name %></h5>
+        <div class="large-4 columns">
+          <img src="/assets/3d.jpg" class="profile-image">
         </div>
-        <div class="three columns">
-          <img src="/assets/profile.png" style="width: 120px; height: 150px; margin-right: 15px;" class="left">
+        <div class="large-4 columns" style="text-align: center">
+          <img src="/assets/profile.png" class="profile-image">
+          <%= @profile.name %><br />
+          <%= @profile.size %>"
         </div>
-        <div class="six columns" style="text-align:right;">
-          <%= link_to "Add #{pluralize 3, 'sample'} to cart", root_path, class: 'nice button radius full-width', id: 'addLink' %>
-          <br />
-          <br />
+        <div class="large-4 columns" style="">
+          <%= link_to "Add #{pluralize 0, 'sample'} to cart", root_path, class: 'medium button full-width radius', id: 'addLink' %>
+          <p><b>Selected Colors:</b></p>
           <ul id='selectedColors'>
-            <li><h5>Colors you have selected:</h5></li>
+            <li></li>
           </ul>
         </div>
       </div>
     </div>
     <div class="row">
-      <div class="twelve columns">
-        <h4>Colors or Patterns</h4>        
+      <div class="large-12 columns">
+        <h4>Colors and Patterns</h4>        
       </div>
     </div>
     <div class="row">
-      <div class="twelve columns">
+      <div class="large-12 columns">
         <div class="section-container tabs" data-section>
           <% @profile.color_palettes.each do |c| %>  
-            <section class="section active">          
-              <p class="title"><a href="#"><%= c.name %></a></p>
-              <div class="content">                
+            <section class="section <%= c.id == @profile.color_palettes.first.id ? 'active' : '' %>">          
+              <p class="title" style="width: <%= 100.0 / @profile.color_palettes.count.to_f %>%"><a href="#"><%= c.name.gsub("W", "Wall Art") %></a></p>
+              <div class="content">                 
                 <ul>
-                <% 5.times do %>
-                  <% c.colors.each do |color| %>
-                      <li style="display:inline-block;margin: 0 8px; width: 50px;">               
-                        <label class='color-label' style="background: #<%= color.hex %>">
-                          <input type="checkbox" value="" style='display:none'/>
-                        </label>
-                      </li>
-                  <% end %>
-                <% end %>
+                  <%= colors_for c %>               
                 </ul>
               </div>
             </section>
@@ -47,29 +42,35 @@
       </div>
     </div>
     <div class="row">
-      <div class="twelve columns">
+      <div class="large-12 columns">
         <h4><%= @profile.collection.name %> Description</h4>
-        <p>Fusce accumsan velit a lectus dapibus accumsan. Sed faucibus tellus imperdiet diam porttitor rhoncus. Nunc et massa diam, ut porttitor magna. Sed nisl est, fermentum in tempus at, consectetur et enim. Quisque laoreet gravida erat eget convallis. Vestibulum et arcu eu enim tincidunt consectetur. Aliquam a h.</p>
+        <p><%= @profile.collection.name %>Fusce accumsan velit a lectus dapibus accumsan. Sed faucibus tellus imperdiet diam porttitor rhoncus. Nunc et massa diam, ut porttitor magna. Sed nisl est, fermentum in tempus at, consectetur et enim. Quisque laoreet gravida erat eget convallis. Vestibulum et arcu eu enim tincidunt consectetur. Aliquam a h.</p>
         <p> laoreet gravida erat eget convallis. Vestibulum et arcu eu enim tincidunt consectetur. Aliquam a sem orci. Vestibulum eget metus vitae eros fringilla vestibulum vitae sit amet tortor. Nunc vitae velit nunc. Nullam lorem dui, mollis in mollis non, ullamcorper sit amet sem. Nullam ultrices malesuada nibh.</p>
       </div>
     </div>
     <div class="row" style="border: 2px solid #333">
-      <div class="three columns">
+      <div class="large-4 columns">
         <h4>Specs</h4>
         <h5>Recycled Content</h5>
         <p>Fusce accumsan velit a lectus dapibus accumsan. Sed faucibus tellus imperdiet diam porttitor rhoncus. </p>
+      </div>
+      <div class="large-4 columns">
         <h5>IAQ</h5>
         <p>Fusce accumsan velit a lectus dapibus accumsan.</p>
+        <p>Fusce accumsan velit a lectus dapibus accumsan.</p>
+      </div>
+      <div class="large-4 columns">
+        <h5>Certificates</h5>
+        <%= link_to "Envrionmental", "javascript:void(0)", class: 'success button round' %>
+        <%= link_to "Space Friendly", "javascript:void(0)", class: 'success button round' %>
       </div>
     </div>
      <div class="row">
       <h5>Other <%= @profile.collection.name %> Products <%= link_to "Learn more about #{@profile.collection.name}", root_path, class: 'right learn-more', target: :_blank %></h5>
       <ul>
-        <li style="border: 1px solid #333; padding: 15px; display:block;display: inline-block; width: 100px; height: 100px; margin: 0 14px;"></li>
-        <li style="border: 1px solid #333; padding: 15px; display:block;display: inline-block; width: 100px; height: 100px; margin: 0 14px;"></li>
-        <li style="border: 1px solid #333; padding: 15px; display:block;display: inline-block; width: 100px; height: 100px; margin: 0 14px;"></li>
-        <li style="border: 1px solid #333; padding: 15px; display:block;display: inline-block; width: 100px; height: 100px; margin: 0 14px;"></li>
-        <li style="border: 1px solid #333; padding: 15px; display:block;display: inline-block; width: 100px; height: 100px; margin: 0 14px;"></li>
+        <% @profile.collection.style_types.where("style_types.id != ?", @profile.style_type.id).order('random()').limit(5).each do |related_style| %>
+          <li style="border: 1px solid #333; box-shadow: 0 1px 3px #AAA; display:block;display: inline-block; width: 100px; height: 100px; margin: 0 14px; text-align: center;"><img src="/assets/3d.jpg" /><br /><%= related_style.name %></li>
+        <% end %>
       <ul>
-      <script type="text/javascript">$(document).foundation()</script>
+      <br />      
     </div>
