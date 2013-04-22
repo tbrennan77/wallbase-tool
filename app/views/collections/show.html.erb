@@ -2,7 +2,7 @@
 li {list-style-type: none;}
 a.red {color: red;}
 </style>
-<%= link_to "+ Add Collection", new_collection_path, class: 'success button nice radius right' %>
+<%= link_to "+ Add Collection", new_collection_path, class: 'success button nice  right' %>
 <h3 class="subheader">List of Collections</h3>
 
 <hr />
@@ -15,19 +15,19 @@ a.red {color: red;}
 
 <div class="large-8 columns">  
   <h5><%= @collection.name %></h5>
-  <%= link_to "+ Add Style", new_style_type_path(collection_id: @collection.id), class: 'success small button nice radius' %>    
-  <%= link_to "Delete Collection", collection_path(@collection), method: :delete, class: 'right alert small button nice radius', data: {confirm: "Are you sure?"} %>    <%= link_to "Edit Collection", edit_collection_path(@collection), class: 'right small button nice radius' %>
+  <%= link_to "+ Add Style", new_style_type_path(collection_id: @collection.id), class: 'success small button nice ' %>    
+  <%= link_to "Delete Collection", collection_path(@collection), method: :delete, class: 'right alert small button nice ', data: {confirm: "Are you sure?"} %>    <%= link_to "Edit Collection", edit_collection_path(@collection), class: 'right small button nice ' %>
   <br />
   <br />
   <% @collection.style_types.each do |s| %>
     <div class="row">
       <div class="large-12 columns panel">
             <%= s.name %> (<%= pluralize s.profiles.count, 'profile' %>)
-            <%= link_to "Delete Style", style_type_path(s), data: {confirm: "Are you sure?"}, :method => :delete, class: 'alert small button radius right' %>
-            <%= link_to "Edit Style", edit_style_type_path(s), class: 'small button radius right' %>
+            <%= link_to "Delete Style", style_type_path(s), data: {confirm: "Are you sure?"}, :method => :delete, class: 'alert small button  right' %>
+            <%= link_to "Edit Style", edit_style_type_path(s), class: 'small button  right' %>
         <br />
         <hr />
-        <%= link_to "+ Add Profile", new_profile_path(id: s.id), class: 'success small button radius' %>
+        <%= link_to "+ Add Profile", new_profile_path(id: s.id), class: 'success small button ' %>
         <div class="row">
           <div class="large-12 columns">
             <ul>
