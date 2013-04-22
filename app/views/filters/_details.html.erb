@@ -68,7 +68,7 @@
       </div>
     </div>
      <div class="row">
-      <h5>Other <%= @profile.collection.name %> Products <%= link_to "Learn more about #{@profile.collection.name}", root_path, class: 'right learn-more', target: :_blank %></h5>
+      <h5>Other <%= @profile.collection.name %> Products</h5>
       <ul>
         <% @profile.collection.style_types.where("style_types.id != ?", @profile.style_type.id).order('random()').limit(5).each do |related_style| %>
           <li style="border: 1px solid #333; box-shadow: 0 1px 3px #AAA; display:block;display: inline-block; width: 100px; height: 100px; margin: 0 14px; text-align: center;"><img src="/assets/3d.jpg" /><br /><%= related_style.name %></li>
