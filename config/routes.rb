@@ -4,6 +4,8 @@ Wallbase::Application.routes.draw do
   resources :profiles
   resources :colors
   resources :color_palettes, :path => "color-palettes"
+
+  match '/samplecart' => 'filters#samplecart', as: 'sample_cart'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
