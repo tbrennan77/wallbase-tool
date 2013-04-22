@@ -38,4 +38,16 @@ class FiltersController < ApplicationController
 
     @style_types = style_type_filter.limit(8)
   end
+
+  def samplecart
+    t = 'http://192.168.0.25:3000/DesktopModules/Commerce/API/Wallbase/AddSample?sku='
+    params[:wallbase_skus].each do |sku|
+      t += "#{sku},"
+    end
+
+    data = %x{curl #{t}}    
+    if request.xhr?
+      render :js => "console.log('#{data}'); console.log('#{t}')"
+    end
+  end
 end

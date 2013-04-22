@@ -9,6 +9,6 @@ class Profile < ActiveRecord::Base
   scope :ordered, order("id")
 
   def name
-    self.uuid.gsub('XX', self.size.to_i.to_s)
+    self.uuid
   end
 end

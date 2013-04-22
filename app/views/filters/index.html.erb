@@ -9,6 +9,11 @@
 
         $('#addLink').text("Add "+count+" "+word+" to cart");
       }
+
+      $("#addLink").live('click', function() {
+        $('form#sampleCart').submit();
+      });
+
       $('select').hide();
       if (IpadIsNotStandalone()) {DisplayAddToHomeScreenPopup();}
 
@@ -16,7 +21,7 @@
       appear_class = 'fadeInRightBig'
       disappear_class = 'fadeOutLeftBig'      
 
-      $('form#search-form').live('change', function() {
+      $('form#search-form').live('change', function() {        
         $(this).submit();        
       });
 
@@ -37,15 +42,16 @@
       });
 
       $('label.color-label').live('change', function() {
+        var sku  = $(this).find('input').data('sku');
         var name  = $(this).find('input').val();
         var color = $(this).data('color');
         if ($(this).find('input').is(':checked')) {
           $(this).addClass('active');
-          $('#selectedColors').append('<li><label style="background: #EFEFEF; color: #'+color+'">'+name+'<input type="checkbox" value="'+name+'" checked="checked" /></label></li> ');
+          $('#selectedColors').append('<li><label style="background: #EFEFEF; color: #'+color+'">'+name+'<input type="hidden" name="wallbase_skus[]" value="'+sku+'" checked="checked" /></label></li> ');
           updateCount();
         } else {
           $(this).removeClass('active');
-          $('#selectedColors li').find('input[value="'+name+'"]').parent().parent().remove();
+          $('#selectedColors li').find('input[value="'+sku+'"]').parent().parent().remove();
           updateCount();
         }
       });
@@ -97,7 +103,8 @@ label.color-label:hover {
 label.color-label {
   width: 50px;
   height: 50px;
-  box-shadow: 0 1px 3px #AAA;
+  box-shadow: 0 1px 4px #777;
+  border: 3px solid whitesmoke;
 }
 label.active { 
   border: 3px dashed yellow;  
@@ -108,7 +115,7 @@ label.active {
   box-shadow: 0 1px 3px #AAA;
 }
 .profile-image {
-  width: 240px; height: 240px; box-shadow: 0 1px 3px #aaa;
+  width: 240px; height: 240px; box-shadow: 0 1px 4px #777;border: 4px solid whitesmoke;
 }
 .full-width {width:100%;}
 .notcurrent {display: none;}
