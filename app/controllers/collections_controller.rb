@@ -5,6 +5,10 @@ class CollectionsController < ApplicationController
     @collections = Collection.order :name
   end
 
+  def show
+    @collection = Collection.find params[:id]
+  end
+
   def new
     @collection = Collection.new
   end
