@@ -46,6 +46,14 @@
 
 nav.top-bar {
   margin-bottom: 30px;
+  background-image: url(web_sprite_bgs.png);
+  border-radius: 3px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  box-shadow: 0 1px 3px #777;
+  -moz-box-shadow: 0 1px 3px #777;
+  -webkit-box-shadow: 0 1px 3px #777;
 }
+
 
 .panel {margin-left: 15px !important;}
