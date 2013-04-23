@@ -5,6 +5,13 @@
   <%= f.error_messages %>
   <%= f.text_field :name, placeholder: "Collection Name" %>
   <%= f.text_field :material, placeholder: "Material Name (Rubber)" %>
+  <%= f.text_area :collection_description, placeholder: "Type description here." %>
+
+  <label><%= f.check_box :icon_1 %> One</label>
+  <label><%= f.check_box :icon_2 %> Two</label>
+  <label><%= f.check_box :icon_3 %> tjree</label>
+  <label><%= f.check_box :icon_4 %> four</label>
+  <label><%= f.check_box :icon_5 %> five</label>
   
   <%= f.submit "Create Collection", class: 'success button nice radius' %> <%= link_to "Cancel", collections_path, class: 'alert button nice radius' %>
 <% end %>
