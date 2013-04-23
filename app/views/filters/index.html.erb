@@ -71,22 +71,21 @@ div.filter-select, div.filter-select ul  {
 }
 li {list-style-type: none;}
 a.learn-more {font-size: 16px;}
-a#reset:hover {color: white; background: #93cede;}
+a#reset:hover {color: white; background: #005294;}
 a#reset {
   background: #F6F6F6;
   width: 100%;
   display: inline-block;
   padding: 11px;
   text-align: center;
-  color: #3B9FBC;
+  color: #005294;
   border: 1px solid #DDD;
-  border-radius: 3px;
   margin-bottom: 8px;
 }
 
 form #color label {
   padding: 20px;  
-  color: #3b9fbc;
+  color: #005294;
   background: #F6F6F6;
   border-top: 1px solid #DDD;
   margin-bottom:0;
@@ -127,6 +126,7 @@ ul#heading img {vertical-align: middle; margin-right: 25px;margin-top:20px;}
 ul#selectedColors {height: 140px;}
 img:hover {cursor: default !important;}
 li.name {text-transform: uppercase;}
+a#addLink {border-style: none;}
 </style>
 <style media="all and (orientation:portrait)">#addToHomeScreen{left: 65px;}</style>
 
@@ -172,21 +172,3 @@ li.name {text-transform: uppercase;}
       <%#= Placeholder for details partial %>
     </div>
   </div>
-
-  <ol class="joyride-list" data-joyride>
-  <li data-id="firstStop" data-text="Next">
-    <p>Hello and welcome to the Joyride documentation page.</p>
-  </li>
-  <li data-id="numero1" data-class="custom so-awesome" data-text="Next">
-    <h4>Stop #1</h4>
-    <p>You can control all the details for you tour stop. Any valid HTML will work inside of Joyride.</p>
-  </li>
-  <li data-id="numero2" data-button="Next" data-options="tipLocation:top;tipAnimation:fade">
-    <h4>Stop #2</h4>
-    <p>Get the details right by styling Joyride with a custom stylesheet!</p>
-  </li>
-  <li data-button="Next">
-    <h4>Stop #4</h4>
-    <p>It works as a modal too!</p>
-  </li>
-</ol>
