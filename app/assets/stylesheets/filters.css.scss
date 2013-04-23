@@ -1,0 +1,78 @@
+div.filter-select, div.filter-select ul  {
+  width: 100% !important;
+}
+li {list-style-type: none;}
+a.learn-more {font-size: 16px;}
+a#reset:hover {color: white; background: #005294;}
+a#reset {
+  background: #F6F6F6;
+  width: 100%;
+  display: inline-block;
+  padding: 11px;
+  text-align: center;
+  color: #005294;
+  border: 1px solid #DDD;
+  margin-bottom: 8px;
+}
+
+form #color label {
+  padding: 20px;  
+  color: #005294;
+  background: #F6F6F6;
+  border-top: 1px solid #DDD;
+  margin-bottom:0;
+  border-left: 1px solid #DDD;
+  border-right: 1px solid #DDD;  
+}
+
+#segments label.segment_label:last-child {border-bottom: 1px solid #DDD;}
+
+label.color-label:hover {
+  color: white;
+  background: #93cede;
+}
+label.color-label {
+  width: 50px;
+  height: 50px;
+  box-shadow: 0 1px 4px #777;
+  -mox-box-shadow: 0 1px 4px #777;
+  -webkit-box-shadow: 0 1px 4px #777;
+  border: 3px solid whitesmoke;
+}
+label.active { 
+  border: 3px dashed yellow;  
+}
+
+#results img {
+  border: 4px solid whitesmoke;
+  box-shadow: 0 1px 4px #777;
+  -mox-box-shadow: 0 1px 4px #777;
+  -webkit-box-shadow: 0 1px 4px #777;
+}
+.profile-image {
+  width: 240px; height: 240px; box-shadow: 0 1px 4px #777; -mox-box-shadow: 0 1px 4px #777; -webkit-box-shadow: 0 1px 4px #777;border: 4px solid whitesmoke;
+}
+.full-width {width:100%;}
+.notcurrent {display: none;}
+nav.top-bar {display:none;}
+h3 {color: black; text-align: right; margin-bottom: -17px;}
+ul#heading li {display:inline-block;}
+ul#heading img {vertical-align: middle; margin-right: 25px;margin-top:20px;}  
+.floor_types label {background: white;padding-left: 40px;}
+ul#selectedColors {height: 140px;}
+img:hover {cursor: default !important;}
+li.name {text-transform: uppercase;}
+a#addLink {border-style: none;}
+
+li.related-products {
+  display: block;
+  display: inline-block;
+  width: 100px;
+  height: 130px;
+  margin: 0 14px;
+  text-align: center;
+  border: 4px solid whitesmoke;
+  box-shadow: 0 1px 4px #777;
+  -mox-box-shadow: 0 1px 4px #777;
+  -webkit-box-shadow: 0 1px 4px #777;
+}
