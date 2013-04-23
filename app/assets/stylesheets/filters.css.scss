@@ -1,9 +1,11 @@
-div.filter-select, div.filter-select ul  {
-  width: 100% !important;
-}
 li {list-style-type: none;}
+
+div.filter-select {
+  width: 100% !important;
+  ul {width: 100% !important;}
+}
+
 a.learn-more {font-size: 16px;}
-a#reset:hover {color: white; background: #005294;}
 a#reset {
   background: #F6F6F6;
   width: 100%;
@@ -13,6 +15,11 @@ a#reset {
   color: #005294;
   border: 1px solid #DDD;
   margin-bottom: 8px;
+
+  &:hover {
+    color: white;
+    background: #005294
+  }
 }
 
 form #color label {
@@ -27,10 +34,6 @@ form #color label {
 
 #segments label.segment_label:last-child {border-bottom: 1px solid #DDD;}
 
-label.color-label:hover {
-  color: white;
-  background: #93cede;
-}
 label.color-label {
   width: 50px;
   height: 50px;
@@ -38,7 +41,13 @@ label.color-label {
   -mox-box-shadow: 0 1px 4px #777;
   -webkit-box-shadow: 0 1px 4px #777;
   border: 3px solid whitesmoke;
+
+  &:hover {    
+    color: white;
+    background: #93cede;
+  }
 }
+
 label.active { 
   border: 3px dashed yellow;  
 }
@@ -52,18 +61,30 @@ label.active {
 .profile-image {
   width: 240px; height: 240px; box-shadow: 0 1px 4px #777; -mox-box-shadow: 0 1px 4px #777; -webkit-box-shadow: 0 1px 4px #777;border: 4px solid whitesmoke;
 }
+
 .full-width {width:100%;}
 .notcurrent {display: none;}
-nav.top-bar {display:none;}
-h3 {color: black; text-align: right; margin-bottom: -17px;}
-ul#heading li {display:inline-block;}
-ul#heading img {vertical-align: middle; margin-right: 25px;margin-top:20px;}  
 .floor_types label {background: white;padding-left: 40px;}
+.top-bar {display:none;}
+
+h3 {color: black; text-align: right; margin-bottom: -17px;}
+
 ul#selectedColors {height: 140px;}
+ul#heading {
+  
+  li {display:inline-block;}
+  
+  img {
+    vertical-align: middle;
+    margin-right: 25px;
+    margin-top:20px;
+  }  
+}
+  
 img:hover {cursor: default !important;}
-li.name {text-transform: uppercase;}
 a#addLink {border-style: none;}
 
+li.name {text-transform: uppercase;}
 li.related-products {
   display: block;
   display: inline-block;
