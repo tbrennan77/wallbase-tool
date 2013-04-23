@@ -1,70 +1,3 @@
-<script>
-  $(document).ready(function() {
-      function updateCount() {
-        count = $('#selectedColors').children().length-1;
-        word = 'samples'
-        if (count == 1) {
-          word = 'sample';
-        }
-
-        $('#addLink').text("Add "+count+" "+word+" to cart");
-      }
-
-      $("#addLink").live('click', function() {
-        $('form#sampleCart').submit();
-      });
-
-      $('select').hide();
-      if (IpadIsNotStandalone()) {DisplayAddToHomeScreenPopup();}
-
-      $('.single-parent').hide()
-      appear_class = 'fadeInRightBig'
-      disappear_class = 'fadeOutLeftBig'      
-
-      $('form#search-form').live('change', function() {        
-        $(this).submit();        
-      });
-
-      $('form.details-form').live('change', function() {
-        if ($(this).find('select').val() != "") {
-          $(this).submit();
-          $('.result-parent').removeClass(appear_class).addClass(disappear_class);
-          $('.single-parent').removeClass(disappear_class).addClass(appear_class).show();      
-          $('.result-parent').fadeOut();                
-        }
-      });
-
-      $('.back-to-filter').live('click', function() {  
-        $('form#search-form').submit();
-        $('.single-parent').removeClass(appear_class).addClass(disappear_class);
-        $('.result-parent').removeClass(disappear_class).addClass(appear_class).show();      
-        $('.single-parent').fadeOut();
-      });
-
-      $('label.color-label').live('change', function() {
-        var sku  = $(this).find('input').data('sku');
-        var name  = $(this).find('input').val();
-        var color = $(this).data('color');
-        if ($(this).find('input').is(':checked')) {
-          $(this).addClass('active');
-          $('#selectedColors').append('<li><label style="background: #EFEFEF; color: #'+color+'">'+name+'<input type="hidden" name="wallbase_skus[]" value="'+sku+'" checked="checked" /></label></li> ');
-          updateCount();
-        } else {
-          $(this).removeClass('active');
-          $('#selectedColors li').find('input[value="'+sku+'"]').parent().parent().remove();
-          updateCount();
-        }
-      });
-
-      $('#reset').live('click', function() {
-        window.location = '/';
-      });
-
-  });
-</script>
-
-<style media="all and (orientation:portrait)">#addToHomeScreen{left: 65px;}</style>
-
 <div class="row">
   <div class="large-4 columns">
     <%= link_to "Reset", 'javascript:void(0)', id: 'reset' %>
@@ -88,14 +21,13 @@
   </div>
 
   <div class="result-parent animated large-8 columns">
-    <h4 id="firstStop">WALLBASE</h4>
+    <h4>WALLBASE</h4>
     <div id="results" class="ajax-container results">
       <%= render 'results' %>
     </div>
   </div>
 
   <div class="single-parent large-8 columns animated">
-    <div id="details" class="ajax-container details">      
-      <%#= Placeholder for details partial %>
-    </div>
+    <div id="details" class="ajax-container details"></div>
   </div>
+</div>
