@@ -61,19 +61,10 @@
       });
 
   });
- $(document).foundation('joyride', 'start');
 </script>
 
 <style media="all and (orientation:portrait)">#addToHomeScreen{left: 65px;}</style>
 
-<!--
-<div id="addToHomeScreen">
-  <img src="/assets/button.png" />
-  Tap this icon.<br />
-  Then '<b>Add to Home Screen</b>'<br />
-  to install.
-</div>
--->
 <div class="row">
   <div class="large-4 columns">
     <%= link_to "Reset", 'javascript:void(0)', id: 'reset' %>
@@ -84,7 +75,7 @@
     <div class='color-legend'>      
       <% ColorPalette.all.each do |cp| %>
       <div class='row'>
-        <div class='large-2 columns' style="text-align: right; padding: 0; padding-right: 8px;">
+        <div class='large-2 columns color-palette-list'>
           <span class="color-palette round color-palette-<%= cp.name %>" style="left:20px !important"><%= cp.name %></span>
         </div>
         <div class='large-10 columns' style="padding: 0">

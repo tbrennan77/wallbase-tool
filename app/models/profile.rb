@@ -11,4 +11,12 @@ class Profile < ActiveRecord::Base
   def name
     self.uuid
   end
+
+  def related_products
+    self.collection.style_types.where("style_types.id != ?", style_type.id).order('random()').limit(5)
+  end
+
+  def color_palette_width_in_percent
+    "#{100.0 / color_palettes.count.to_f}%"
+  end
 end

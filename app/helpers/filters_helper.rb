@@ -1,3 +1,4 @@
+# encoding: UTF-8
 module FiltersHelper
   def nice_color_palette_name_for(color_palette)
     if color_palette.name == 'Selects'
@@ -31,4 +32,15 @@ module FiltersHelper
 
     list_items.html_safe
   end
+
+  def image_for(profile, options={})    
+    if options[:type] == 'profile'
+      folder = "profile_images"
+      image_suffex = "profile"
+    elsif options[:type] == 'corner'
+      folder = "corner_images"
+      image_suffex = "image"
+    end
+    image_tag "/assets/#{folder}/#{profile.style_type.name.capitalize.gsub('®', '')}-#{profile.name}-#{image_suffex}.jpg", class: options[:class]
+  end  
 end
