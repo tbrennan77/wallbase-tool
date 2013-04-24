@@ -4,4 +4,5 @@ class Collection < ActiveRecord::Base
   validates_presence_of :name, :material
   has_many :style_types
   has_many :profiles, through: :style_types
+  has_many :collection_sections
 end
