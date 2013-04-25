@@ -13,7 +13,7 @@ class ProfilesController < ApplicationController
     @profile = Profile.new params[:profile]
     @profile.style_type_id
     if @profile.save
-      redirect_to collections_path, notice: 'Created Profile'
+      redirect_to collection_path(@profile.collection), notice: 'Created Profile'
     else
       render :new
     end
@@ -23,7 +23,7 @@ class ProfilesController < ApplicationController
     @profile = Profile.find params[:id]
 
     if @profile.update_attributes params[:profile]
-      redirect_to collections_path, notice: 'Updated Profile'
+      redirect_to collection_path(@profile.collection), notice: 'Updated Profile'
     else
       render :edit
     end

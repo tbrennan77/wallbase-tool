@@ -20,5 +20,5 @@
     <% end %>
   </fieldset>
 
-  <%= f.submit "Create Profile", class: 'success button nice radius' %> <%= link_to "Cancel", collections_path, class: 'alert button nice radius' %>
+  <%= f.submit "Create Profile", class: 'small success button' %> <%= link_to "Cancel", collection_path(@profile.collection), class: 'small alert button' %>
 <% end %>

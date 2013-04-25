@@ -20,7 +20,7 @@ class CollectionsController < ApplicationController
   def create
     @collection = Collection.new params[:collection]
     if @collection.save
-      redirect_to collections_path, notice: 'Create Collection'
+      redirect_to collection_path(@collection), notice: 'Create Collection'
     else
       render :new
     end
@@ -30,7 +30,7 @@ class CollectionsController < ApplicationController
     @collection = Collection.find params[:id]
 
     if @collection.update_attributes params[:collection]
-      redirect_to collections_path, notice: 'Updated Collection'
+      redirect_to collection_path(@collection), notice: 'Updated Collection'
     else
       render :edit
     end
