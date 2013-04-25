@@ -2,8 +2,8 @@
 
   <% @style_types.each do |style_type| %>
     <div class='row'>
-      <div class="animated fadeInLeft large-6 columns">
-        <img src="/assets/profile_images/<%= style_type.name.capitalize.gsub('®', '') %>-<%= style_type.profiles.first.name %>-profile.jpg" style="width: 120px; height: 150px; margin-right: 15px;" class="left has-tip" title="Choose a profile from the dropdown to see more details!" data-tooltip />
+      <div class="animated fadeInLeft large-6 columns">        
+        <%= image_for_results style_type %>
         <ul class="left">
           <li class="name"><b><%= style_type.name.upcase %> (<%= style_type.collection.material.upcase %>)</b></li>      
           <li><%= style_type.collection.name %></li>

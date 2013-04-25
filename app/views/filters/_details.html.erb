@@ -49,7 +49,7 @@
         <p><%= @profile.collection.collection_description %></p>
       </div>
     </div>
-    <div class="row specs-container">
+    <div class="row">
       <div class="large-8 columns">
         <% @profile.collection.collection_sections.each do |cs| %>
           <h5><%= cs.title %></h5>
@@ -83,7 +83,9 @@
         <% end %>
       </div>
     </div>
+
      <div class="row">
+      <hr />
     <% unless @profile.related_products.blank? %>
       <h5>Other <%= @profile.collection.name %> Products</h5>
       <ul>

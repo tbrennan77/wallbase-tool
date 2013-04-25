@@ -42,10 +42,18 @@ module FiltersHelper
       image_suffex = "image"
     end
 
-    if File.exists?(File.join(Rails.root, "/assets/images/#{folder}/#{profile.style_type.name.capitalize.gsub('®', '')}-#{profile.name}-#{image_suffex}.jpg"))
-      image_tag "/assets/#{folder}/#{profile.style_type.name.capitalize.gsub('®', '')}-#{profile.name}-#{image_suffex}.jpg", class: options[:class]
+    if File.exists?(File.join(Rails.root, "app/assets/images/#{folder}/#{profile.style_type.name.capitalize}-#{profile.name}-#{image_suffex}.jpg"))
+      image_tag "/assets/#{folder}/#{profile.style_type.name.capitalize}-#{profile.name}-#{image_suffex}.jpg", class: options[:class]
     else
       image_tag "missing.jpg", class: options[:class]
+    end
+  end
+
+  def image_for_results(style_type)
+    if File.exists?(File.join(Rails.root, "app/assets/images/profile_images/#{style_type.name.capitalize}-#{style_type.profiles.first.name}-profile.jpg"))
+      image_tag "/assets/profile_images/#{style_type.name.capitalize}-#{style_type.profiles.first.name}-profile.jpg", class: "left has-tip result-profile-image", title: "Choose a profile from the dropdown to see more details!", data: {tooltip:  ''}
+    else
+      image_tag "missing.jpg", class: "left has-tip result-profile-image", title: "Choose a profile from the dropdown to see more details!", data: {tooltip:  ''}
     end
   end
 end
