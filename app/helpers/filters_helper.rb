@@ -33,7 +33,7 @@ module FiltersHelper
     list_items.html_safe
   end
 
-  def image_for(profile, options={})    
+  def image_for(profile, options={})
     if options[:type] == 'profile'
       folder = "profile_images"
       image_suffex = "profile"
@@ -41,6 +41,11 @@ module FiltersHelper
       folder = "corner_images"
       image_suffex = "image"
     end
-    image_tag "/assets/#{folder}/#{profile.style_type.name.capitalize.gsub('®', '')}-#{profile.name}-#{image_suffex}.jpg", class: options[:class]
-  end  
+
+    if File.exists?(File.join(Rails.root, "/assets/images/#{folder}/#{profile.style_type.name.capitalize.gsub('®', '')}-#{profile.name}-#{image_suffex}.jpg"))
+      image_tag "/assets/#{folder}/#{profile.style_type.name.capitalize.gsub('®', '')}-#{profile.name}-#{image_suffex}.jpg", class: options[:class]
+    else
+      image_tag "missing.jpg", class: options[:class]
+    end
+  end
 end

@@ -11,19 +11,27 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130423210935) do
+ActiveRecord::Schema.define(:version => 20130424140153) do
+
+  create_table "collection_sections", :force => true do |t|
+    t.integer  "collection_id"
+    t.string   "title"
+    t.string   "body"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
 
   create_table "collections", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at",              :null => false
-    t.datetime "updated_at",              :null => false
+    t.datetime "created_at",             :null => false
+    t.datetime "updated_at",             :null => false
     t.string   "material"
     t.boolean  "icon_1"
     t.boolean  "icon_2"
     t.boolean  "icon_3"
     t.boolean  "icon_4"
     t.boolean  "icon_5"
-    t.string   "collection_descrtiption"
+    t.string   "collection_description"
   end
 
   create_table "color_palettes", :force => true do |t|

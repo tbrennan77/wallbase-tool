@@ -1,7 +1,7 @@
 Wallbase::Application.routes.draw do
   # Main resources
   resources :collections
-  resources :collection_sectionss
+  resources :collection_sections
   resources :style_types, :path => "style-types"
   resources :profiles
   resources :colors

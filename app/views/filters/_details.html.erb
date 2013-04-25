@@ -45,34 +45,52 @@
     </div>
     <div class="row">
       <div class="large-12 columns">
-        <h4><%= @profile.collection.name %> Description</h4>
-        <p><%= @profile.collection.name %>Fusce accumsan velit a lectus dapibus accumsan. Sed faucibus tellus imperdiet diam porttitor rhoncus. Nunc et massa diam, ut porttitor magna. Sed nisl est, fermentum in tempus at, consectetur et enim. Quisque laoreet gravida erat eget convallis. Vestibulum et arcu eu enim tincidunt consectetur. Aliquam a h.</p>
-        <p> laoreet gravida erat eget convallis. Vestibulum et arcu eu enim tincidunt consectetur. Aliquam a sem orci. Vestibulum eget metus vitae eros fringilla vestibulum vitae sit amet tortor. Nunc vitae velit nunc. Nullam lorem dui, mollis in mollis non, ullamcorper sit amet sem. Nullam ultrices malesuada nibh.</p>
+        <h4><%= @profile.collection.name %></h4>
+        <p><%= @profile.collection.collection_description %></p>
       </div>
     </div>
     <div class="row specs-container">
+      <div class="large-8 columns">
+        <% @profile.collection.collection_sections.each do |cs| %>
+          <h5><%= cs.title %></h5>
+          <%= cs.pretty_body %>
+        <% end %>
+      </div>      
       <div class="large-4 columns">
-        <h4>Specs</h4>
-        <h5>Recycled Content</h5>
-        <p>Fusce accumsan velit a lectus dapibus accumsan. Sed faucibus tellus imperdiet diam porttitor rhoncus. </p>
-      </div>
-      <div class="large-4 columns">
-        <h5>IAQ</h5>
-        <p>Fusce accumsan velit a lectus dapibus accumsan.</p>
-        <p>Fusce accumsan velit a lectus dapibus accumsan.</p>
-      </div>
-      <div class="large-4 columns">
-        <h5>Certificates</h5>
-        <%= link_to "Envrionmental", "javascript:void(0)", class: 'success button round' %>
-        <%= link_to "Space Friendly", "javascript:void(0)", class: 'success button round' %>
+        <br />
+        <% if @profile.collection.icon_1 %>
+          <%= image_tag "Icon_BIAQ.png" %>
+          <br />
+          <br />
+        <% end %>
+        <% if @profile.collection.icon_2 %>
+          <%= image_tag "icon_floorscore.png" %>
+          <br />
+          <br />
+        <% end %>
+        <% if @profile.collection.icon_3 %>
+          <%= image_tag "icon_NSF.png" %>
+          <br />
+          <br />
+        <% end %>
+        <% if @profile.collection.icon_4 %>
+          <%= image_tag "icon_phthalateFree.png" %>
+          <br />
+          <br />
+        <% end %>
+        <% if @profile.collection.icon_5 %>
+          <%= image_tag "icon_phthalateHalogen.png" %>
+        <% end %>
       </div>
     </div>
      <div class="row">
+    <% unless @profile.related_products.blank? %>
       <h5>Other <%= @profile.collection.name %> Products</h5>
       <ul>
-        <% @profile.related_products.each do |related_style| %>
-          <li class="related-products"><%= image_for related_style.profiles.first, type: 'corner' %><br /><%= related_style.name %></li>
-        <% end %>
+          <% @profile.related_products.each do |related_style| %>
+            <li class="related-products"><%= image_for related_style.profiles.first, type: 'corner' %><br /><%= related_style.name %></li>
+          <% end %>
       <ul>
+      <% end %>
       <br />      
     </div>

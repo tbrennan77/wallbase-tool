@@ -2,12 +2,11 @@
 li {list-style-type: none;}
 a.red {color: red;}
 </style>
-<%= link_to "+ Add Collection", new_collection_path, class: 'success button nice  right' %>
 <h3 class="subheader">List of Collections</h3>
-
 <hr />
 
 <div class="large-4 columns">
+  <%= link_to "+ Add Collection", new_collection_path, class: 'success button expand' %>
   <% Collection.all.each do |c| %>
   <%= link_to c.name, collection_path(c), class: 'button expand' %><br />
 <% end %>
@@ -44,5 +43,13 @@ a.red {color: red;}
         </div>
       </div>
     </div>
+  <% end %>
+  <% @collection.collection_sections.each do |cs| %>
+    <span style="text-transform: uppercase">
+      <h5><%= cs.title %></h5>
+      <% cs.body.each_line do |line| %>
+        <%= line %><br />
+      <% end %>
+    <span>
   <% end %>
 </div>

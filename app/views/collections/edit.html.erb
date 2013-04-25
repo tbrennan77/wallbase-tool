@@ -11,6 +11,15 @@
   <label><%= f.check_box :icon_3 %> tjree</label>
   <label><%= f.check_box :icon_4 %> four</label>
   <label><%= f.check_box :icon_5 %> five</label>
+  <%= link_to_add_fields "Add Section", f, :collection_sections, class: 'small success button' %>
+  
+  <div class="row">
+    <div class="large-12 columns">      
+       <%= f.fields_for :collection_sections do |builder| %>
+         <%= render 'collection_section_fields', f: builder %>
+       <% end %>
+    </div>
+  </div>
 
   <%= f.submit "Update Collection", class: 'button nice radius' %> <%= link_to "Cancel", collections_path, class: 'alert button nice radius' %>
 <% end %>
