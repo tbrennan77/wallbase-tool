@@ -1,4 +1,6 @@
 class FiltersController < ApplicationController
+  layout 'filter'
+
   def index
     @collections = Collection.order(:name)
     @color_palettes = ColorPalette.ordered    
