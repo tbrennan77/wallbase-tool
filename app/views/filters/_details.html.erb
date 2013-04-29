@@ -14,7 +14,7 @@
         <div class="large-4 columns">
           <%= link_to "Add #{pluralize 0, 'sample'} to cart", 'javascript:void(0)', class: 'medium button full-width', id: 'addLink' %>
           <p><b>Selected Colors:</b></p>
-          <%= form_tag 'http://www.johnsonite.com/DesktopModules/Commerce/API/Wallbase/AddSample', id: 'sampleCart' do %>
+          <%= form_tag sample_cart_path, id: 'sampleCart' do %>
             <ul id='selectedColors'>
               <li></li>
             </ul>

@@ -42,14 +42,11 @@ class FiltersController < ApplicationController
   end
 
   def samplecart
-    t = 'http://192.168.0.25:3000/DesktopModules/Commerce/API/Wallbase/AddSample?sku='
+    johnsonite_api_path = 'http://192.168.0.25:3000/DesktopModules/Commerce/API/Wallbase/AddSample?skus='
     params[:wallbase_skus].each do |sku|
-      t += "#{sku},"
+      johnsonite_api_path += "#{sku},"
     end
 
-    data = %x{curl #{t}}    
-    if request.xhr?
-      render :js => "console.log('#{data}'); console.log('#{t}')"
-    end
+    redirect_to johnsonite_api_path
   end
 end
