@@ -55,7 +55,12 @@
       <div class='alert-box error'><%= flash[:error] %></div>
     <% end %>
 
-  <div class="fixed">
+<div id="fader" class="fixed">
+  <br />
+  <br />
+</div>
+
+  <div class="fixed" style="top: 35px">
     <nav class="top-bar">
       <ul class="title-area">
         <!-- Title Area -->
@@ -86,6 +91,8 @@
 
 <div class="row">
   <div class="large-12 columns">
+    <br />
+    <br />
     <br />
     <%= yield %>
   </div>
