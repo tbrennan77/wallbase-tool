@@ -6,11 +6,39 @@
   <%= f.text_field :material, placeholder: "Material Name (Rubber)" %>
   <%= f.text_area :collection_description, placeholder: "Type description here." %>
 
-  <label><%= f.check_box :icon_1 %> One</label>
-  <label><%= f.check_box :icon_2 %> Two</label>
-  <label><%= f.check_box :icon_3 %> tjree</label>
-  <label><%= f.check_box :icon_4 %> four</label>
-  <label><%= f.check_box :icon_5 %> five</label>
+  <ul id="spec-image-list" class="large-block-grid-5">
+    <li>
+      <label>
+        <%= f.check_box :icon_1 %>
+        <%= image_tag "Icon_BIAQ.png" %>
+      </label>
+    </li>
+    <li>
+      <label>
+        <%= f.check_box :icon_2 %>
+        <%= image_tag "icon_floorscore.png" %>
+      </label>
+    </li>
+    <li>
+      <label>
+        <%= f.check_box :icon_3 %>
+        <%= image_tag "icon_NSF.png" %>
+       </label>
+    </li>
+    <li>
+      <label>
+        <%= f.check_box :icon_4 %>
+        <%= image_tag "icon_phthalateFree.png" %>
+       </label>
+    </li>
+    <li>
+      <label>
+        <%= f.check_box :icon_5 %>
+        <%= image_tag "icon_phthalateHalogen.png" %>
+       </label>
+    </li>
+  </ul>
+  <hr />
   <%= link_to_add_fields "Add Section", f, :collection_sections, class: 'small success button' %>
   
   <div class="row">
