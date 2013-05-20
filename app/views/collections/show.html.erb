@@ -7,7 +7,7 @@ a.red {color: red;}
 
 <div class="large-4 columns">
   <%= link_to "+ Add Collection", new_collection_path, class: 'success button expand' %>
-  <% Collection.all.each do |c| %>
+  <% Collection.order(:name).each do |c| %>
   <%= link_to c.name, collection_path(c), class: 'button expand' %><br />
 <% end %>
 </div>
