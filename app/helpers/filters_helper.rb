@@ -20,6 +20,14 @@ module FiltersHelper
             </label>
           </li>"
       end
+    elsif color_palette.name == "Wall Art"
+      color_palette.colors.each do |color|
+      list_items += "<li style='display:inline-block;margin: 0 8px; width: 50px;'>               
+          <label class='color-label' style='background: url(/assets/wallart/#{color.color_number}.jpg)' data-color='#{color.hex}'>
+            <input type='checkbox' data-sku='#{@profile.uuid.gsub('XX', color.color_number)}' value='#{display_color_number color.color_number} #{color.name}' style='display:none'/>
+          </label>
+        </li>"
+      end
     else
       color_palette.colors.each do |color|
       list_items += "<li style='display:inline-block;margin: 0 8px; width: 50px;'>               

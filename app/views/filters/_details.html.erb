@@ -32,7 +32,7 @@
         <div class="section-container tabs" data-section>
           <% @profile.color_palettes.each do |c| %>  
             <section class="section <%= c.id == @profile.color_palettes.first.id ? 'active' : '' %>">          
-              <p class="title" style="width: <%= @profile.color_palette_width_in_percent %>"><a href="#"><%= c.name.gsub("W", "Wall Art") %></a></p>
+              <p class="title" style="width: <%= @profile.color_palette_width_in_percent %>"><a href="#"><%= c.name == "Wall Art" ? c.name : c.name.gsub("W", "Wall Art") %></a></p>
               <div class="content">                 
                 <ul>
                   <%= colors_for c %>               
