@@ -45,7 +45,11 @@
   <link href="apple-touch-startup-image-1496x2048.png" media="(device-width: 1536px)  and (orientation: landscape) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image">
   <!-- END Apple Web App -->
 <!--<![endif]-->
-
+  <script>
+    $(document).ready( function() {
+      $('input:visible').first().focus();
+    });
+  </script>
 </head>
   <body>
     <% if flash[:notice] %>
