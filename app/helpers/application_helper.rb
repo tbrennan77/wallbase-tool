@@ -4,10 +4,10 @@ module ApplicationHelper
   end
 
   def display_color_number(color_number)    
-    if color_number.to_i < 99
-      color_number[1..2]
+    if color_number.to_i < 10
+      "0#{color_number.to_i}"
     else
-      color_number
+      "#{color_number.to_i}"
     end    
   end
 

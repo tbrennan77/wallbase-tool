@@ -42,9 +42,13 @@ class FiltersController < ApplicationController
   end
 
   def samplecart
-    johnsonite_api_path = 'http://192.168.0.25:3000/DesktopModules/Commerce/API/Wallbase/AddSample?skus='
+    johnsonite_api_path = 'http://localhost:60798/DesktopModules/Commerce/API/Wallbase/AddSample?skus='
     params[:wallbase_skus].each do |sku|
       johnsonite_api_path += "#{sku},"
+    end
+    
+    if johnsonite_api_path[-1] == ','
+      johnsonite_api_path = johnsonite_api_path[0..-2]
     end
 
     redirect_to johnsonite_api_path
