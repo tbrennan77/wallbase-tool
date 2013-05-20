@@ -24,7 +24,7 @@
             </div>
             <div class="large-8 columns">
               <% p.color_palettes.ordered.each do |cp| %>
-                <span class="color-palette color-palette-<%= cp.name %>"><%= cp.name == 'Selects' ? '&nbsp;'.html_safe : cp.name %></span>
+                <span class="color-palette color-palette-<%= cp.name.gsub('Wall Art', 'wall-art') %>"><%= cp.name == 'Selects' ? '&nbsp;'.html_safe : cp.name %></span>
               <% end %>              
             </div>
           </div>
