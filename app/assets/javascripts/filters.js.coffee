@@ -3,7 +3,8 @@ $ ->
   $('.single-parent').hide()
 
   $("#addLink").live 'click', ->
-    $('form#sampleCart').submit()
+    if $('#addLink').attr("disabled") != "disabled"
+      $('form#sampleCart').submit()
 
   appear_class = 'fadeInRightBig'
   disappear_class = 'fadeOutLeftBig'
@@ -34,6 +35,10 @@ $ ->
       word = 'sample'
 
     $('#addLink').text('Add ' + count + ' ' + word + ' to cart')
+    if count == 0
+      $('#addLink').attr("disabled", "disabled")
+    else
+      $('#addLink').removeAttr("disabled")
 
   $('label.color-label').live 'change', ->
     sku   = $(this).find('input').data('sku')
@@ -50,3 +55,6 @@ $ ->
 
   $('#reset').live 'click', ->
     window.location = '/'
+
+  $('#notification-close').live 'click', ->
+    $('#samplecart-results').fadeOut()

@@ -25,6 +25,16 @@
     font-style: normal;
 }
 
+#samplecart-results {
+  position: fixed;
+  top: 100px;
+  background: #F6F6F6;
+  box-shadow: 0 1px 23px #AAA;
+  border: 1px solid #DDD;
+  padding: 8px;
+  display: none;
+}
+
 .errorExplanation h2 { font-size: 17px; color: white; }
 .errorExplanation {
   border: 1px solid red;
