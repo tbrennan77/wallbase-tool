@@ -1,3 +1,5 @@
+DB_CONFIG = Rails.application.config.database_configuration[Rails.env]
+
 namespace :bw do
   
   namespace :backup do
@@ -6,7 +8,7 @@ namespace :bw do
     task :create => :environment do
       puts "Creating backup url.."
       %x{heroku pgbackups:capture}
-      print "Create URL at: "
+      print "Created URL at: "
       %x{`heroku pgbackups:url`}
       puts "\n"
     end
@@ -19,29 +21,10 @@ namespace :bw do
 
     desc "Restore latest backup"
     task :restore => :environment do
+      puts "Make sure you run 'rake db:drop' and 'rake db:create' before you run a restore."
       latest_backup = Dir.glob('db/backups/*.dump').last
-      puts "Restoring latest backup url..."
-      puts "Checking if database 'wallbase_dev' exists..."
-      if system('psql -l | grep wallbase_dev')
-        drop = system('dropdb wallbase_dev')
-        puts "Database 'wallbase_dev' exists. Dropping database 'wallbase_dev'"
-      else
-        puts "Database 'wallbase_dev' does not exist."
-        drop = true
-      end
-
-      if drop 
-        if system('createdb wallbase_dev')
-          puts "Created empty database 'wallbase_dev'."
-          puts system("pg_restore -d wallbase_dev #{latest_backup}")
-        else
-          puts "Could not create database 'wallbase_dev'"
-          puts "Quiting..."
-        end
-      else
-        puts "Unable to drop database 'wallbase_dev'. Do you have any processes still connected to it?"
-        puts "Quiting..."
-      end
+      puts "Restoring to latest backup from heroku..."
+      puts `pg_restore -d #{DB_CONFIG['database']} #{latest_backup}`
     end
   
     desc "Create a backup and download the url"
