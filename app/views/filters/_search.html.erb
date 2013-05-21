@@ -20,7 +20,7 @@
     </div>
 
     <div id="style-type">
-      <%= select_tag :style_type_id, options_for_select(StyleType.order(:name).map {|st| [st.name, st.id]}, selected: params[:style_type_id]), prompt: 'select a style', class: ' filter-select full-width' %>
+      <%= select_tag :style_type_name, options_for_select(StyleType.select('distinct name').order(:name).map {|st| [st.name]}, selected: params[:style_type_name]), prompt: 'select a style', class: ' filter-select full-width' %>
     </div>  
 
 <% end %>

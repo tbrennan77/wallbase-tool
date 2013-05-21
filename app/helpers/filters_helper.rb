@@ -5,6 +5,12 @@ module FiltersHelper
       'Selects Palette'
     elsif color_palette.name == 'W'
       'Wall Art'
+    elsif color_palette.name == 'Wood'
+      'Wood Patterns'
+    elsif color_palette.name == 'Stone'
+      'Stone Patterns'
+    elsif color_palette.name == 'Wall Art'
+      'Wall Art Patterns'
     else
       "Palette #{color_palette.name}"
     end

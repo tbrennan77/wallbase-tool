@@ -16,8 +16,8 @@ class FiltersController < ApplicationController
     end
 
     # styles
-    if params[:style_type_id].present?
-      style_type_filter = style_type_filter.scoped conditions: ['style_types.id = ?', params[:style_type_id]]
+    if params[:style_type_name].present?
+      style_type_filter = style_type_filter.scoped conditions: ['style_types.name = ?', params[:style_type_name]]
     end
 
     # materials
