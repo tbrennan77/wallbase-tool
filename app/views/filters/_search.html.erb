@@ -16,7 +16,7 @@
 
     <br />
     <div id="material">
-      <%= select_tag :material, options_for_select(@collections.map {|c| c.material}, selected: params[:material]), prompt: 'select a material', class: ' filter-select full-width' %>      
+      <%= select_tag :material, options_for_select(@collections.map{|c| c.material}.uniq!, selected: params[:material]), prompt: 'select a material', class: ' filter-select full-width' %>      
     </div>
 
     <div id="style-type">

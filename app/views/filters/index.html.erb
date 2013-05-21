@@ -6,7 +6,7 @@
       <%= render 'search' %>
     </div>
     <div class='color-legend'>      
-      <% ColorPalette.all.each do |cp| %>
+      <% ColorPalette.labels.each do |cp| %>
       <div class='row'>
         <div class='large-2 columns color-palette-list'>
           <span class="color-palette round color-palette-<%= cp.name %>" style="left:20px !important"><%= cp.name %></span>

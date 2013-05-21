@@ -41,16 +41,23 @@ $ ->
       $('#addLink').removeAttr("disabled")
 
   $('label.color-label').live 'change', ->
+    count = $('#selectedColors').children().length-1
     sku   = $(this).find('input').data('sku')
     name  = $(this).find('input').val()
     color = $(this).data('color')
     is_checked = $(this).find('input').is(':checked')
-    if is_checked
-      $(this).addClass('active')
-      $('#selectedColors').append('<li><label style="background: #EFEFEF; color: #'+color+'">'+name+'<input type="hidden" name="wallbase_skus[]" value="'+sku+'" checked="checked" /></label></li> ')
-    else
-      $(this).removeClass('active');
-      $('#selectedColors li').find('input[value="'+sku+'"]').parent().parent().remove();
+
+    if count < 8      
+      if is_checked
+        $(this).addClass('active')
+        $('#selectedColors').append('<li><label style="background: #EFEFEF; color: #333">'+name+'<input type="hidden" name="wallbase_skus[]" value="'+sku+'" checked="checked" /></label></li> ')
+      else
+        $(this).removeClass('active');
+        $('#selectedColors li').find('input[value="'+sku+'"]').parent().parent().remove();        
+    else if !is_checked      
+        $(this).removeClass('active');
+        $('#selectedColors li').find('input[value="'+sku+'"]').parent().parent().remove();
+    
     updateCount()
 
   $('#reset').live 'click', ->
