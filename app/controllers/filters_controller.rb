@@ -42,16 +42,17 @@ class FiltersController < ApplicationController
   end
 
   def samplecart    
-    johnsonite_api_path = cookies[:skus] || ''
+    johnsonite_api_path = cookies[:wallbase_sample_skus] || ''
     johnsonite_api_path += ',' unless johnsonite_api_path.blank?
 
     params[:wallbase_skus].each do |sku|
       johnsonite_api_path += "#{sku},"
     end
     
-    cookies[:skus] = {
+    cookies[:wallbase_sample_skus] = {
       value: johnsonite_api_path.split(',').uniq.join(','), domain: '.johnsonite.com'
     }
+    flash[:notice] = "Added skus!"
     redirect_to root_path
   end
 end
