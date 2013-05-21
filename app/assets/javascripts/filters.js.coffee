@@ -41,10 +41,10 @@ $ ->
       $('#addLink').removeAttr("disabled")
 
   $('label.color-label').live 'change', ->
-    count = $('#selectedColors').children().length-1
-    sku   = $(this).find('input').data('sku')
-    name  = $(this).find('input').val()
-    color = $(this).data('color')
+    count      = $('#selectedColors').children().length-1
+    sku        = $(this).find('input').data('sku')
+    name       = $(this).find('input').val()
+    color      = $(this).data('color')
     is_checked = $(this).find('input').is(':checked')
 
     if count < 8      
