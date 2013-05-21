@@ -13,7 +13,7 @@ module FiltersHelper
   def colors_for(color_palette)
     list_items = ""
     if color_palette.name == "Selects"            
-      Color.where(:selects => true).each do |color|
+      Color.where(selects: true).each do |color|
       list_items += "<li style='display:inline-block;margin: 0 8px; width: 50px;''>               
             <label class='color-label' style='background: ##{color.hex}' data-color='#{color.hex}'>
               <input type='checkbox' data-sku='#{@profile.uuid.gsub('XX', color.color_number)}' value='#{display_color_number color.color_number} #{color.name}' style='display:none'/>
