@@ -41,21 +41,15 @@ class FiltersController < ApplicationController
     @style_types = style_type_filter.limit(8)
   end
 
-  def samplecart
-    johnsonite_api_path = 'http://devweb.johnsonite.com/DesktopModules/Commerce/API/Wallbase/AddSample?skus='
+  def samplecart    
+    johnsonite_api_path = cookies[:skus] || ''
+    johnsonite_api_path += ',' unless johnsonite_api_path.blank?
+    
     params[:wallbase_skus].each do |sku|
       johnsonite_api_path += "#{sku},"
     end
     
-    if johnsonite_api_path[-1] == ','
-      johnsonite_api_path = johnsonite_api_path[0..-2]
-    end
-
-    #johnsonite_api_path = "http://ifconfig.me/all"
-
-    @results = %x{curl #{johnsonite_api_path}}
-    respond_to do |format|
-      format.js
-    end
+    cookies[:skus] = johnsonite_api_path.split(',').uniq.join(',')
+    redirect_to root_path
   end
 end
