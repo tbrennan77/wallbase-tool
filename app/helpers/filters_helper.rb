@@ -86,4 +86,28 @@ module FiltersHelper
       image_tag "missing.jpg", class: "left has-tip result-profile-image", title: "Choose a profile from the dropdown to see more details!", data: {tooltip:  ''}
     end
   end
+
+  def icons_for_collection(collection)
+    image_div = ""
+    if @profile.collection.icon_1
+      image_div << image_tag("Icon_BIAQ.png")
+      image_div << "<br /><br />"
+    end
+    if @profile.collection.icon_2
+      image_div << image_tag("icon_floorscore.png")
+      image_div << "<br /><br />"
+    end
+    if @profile.collection.icon_3
+      image_div << image_tag("icon_NSF.png")
+      image_div << "<br /><br />"
+    end
+    if @profile.collection.icon_4
+      image_div << image_tag("icon_phthalateFree.png")
+      image_div << "<br /><br />"
+    end
+    if @profile.collection.icon_5
+      image_div << image_tag("icon_phthalateHalogen.png")
+    end
+    image_div.html_safe
+  end
 end

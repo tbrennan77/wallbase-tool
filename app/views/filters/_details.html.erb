@@ -58,29 +58,7 @@
       </div>      
       <div class="large-4 columns">
         <br />
-        <% if @profile.collection.icon_1 %>
-          <%= image_tag "Icon_BIAQ.png" %>
-          <br />
-          <br />
-        <% end %>
-        <% if @profile.collection.icon_2 %>
-          <%= image_tag "icon_floorscore.png" %>
-          <br />
-          <br />
-        <% end %>
-        <% if @profile.collection.icon_3 %>
-          <%= image_tag "icon_NSF.png" %>
-          <br />
-          <br />
-        <% end %>
-        <% if @profile.collection.icon_4 %>
-          <%= image_tag "icon_phthalateFree.png" %>
-          <br />
-          <br />
-        <% end %>
-        <% if @profile.collection.icon_5 %>
-          <%= image_tag "icon_phthalateHalogen.png" %>
-        <% end %>
+        <%= icons_for_collection @profile.collection %>
       </div>
     </div>
 
