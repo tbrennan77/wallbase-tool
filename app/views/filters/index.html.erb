@@ -12,7 +12,7 @@
           <span class="color-palette round color-palette-<%= cp.name %>" style="left:20px !important"><%= cp.name %></span>
         </div>
         <div class='large-10 columns' style="padding: 0">
-           - <%= nice_color_palette_name_for cp %>
+           - <%= link_to nice_color_palette_name_for(cp), color_palette_chart_path %>
          </div>
       </div>
       <br />
