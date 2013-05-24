@@ -55,4 +55,8 @@ class FiltersController < ApplicationController
     flash[:notice] = "Added skus!"
     redirect_to root_path
   end
+
+  def color_palettes
+    @color_palettes = ColorPalette.ordered    
+  end
 end

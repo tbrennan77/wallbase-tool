@@ -1,0 +1,61 @@
+<style>
+.swatch {
+  width: 50px;
+  height: 50px;
+  margin: 0 auto;
+  border: 3px solid whitesmoke;
+}
+
+.shadow {
+  box-shadow: 0 1px 3px #AAA;
+}
+
+.color-swatch {
+  margin-top: 12px;
+  padding-bottom: 20px;
+  text-align: center;
+  border-bottom: 1px solid #CCC;
+}
+.red {
+  color: red;
+}
+</style>
+
+<h3 class="left subheader">List of Color Palettes</h3>
+
+<hr />
+<br />
+
+<div class="section-container tabs" data-section>
+<% @color_palettes.each do |color_palette| %>  
+  <% if color_palette.id.to_s == params[:color_palette_id].to_s %>
+    <section class="section active">
+  <% else %>
+    <section class="section">
+  <% end %>
+
+    <div class="title" style="width: <%= 100.0 / @color_palettes.count.to_f %>%">
+        <% if color_palette.name == "Selects" %>     
+          <h5 style="text-align: center"><%= color_palette.name[0..2] %> (<%= Color.where(:selects => true).count %>)</h5>
+        <% else %>
+          <h5 style="text-align: center"><%= color_palette.name[0..2] %> (<%= color_palette.colors.count %>)</h5>
+        <% end %>
+    </div>
+
+    <div class="content">
+      <br />
+      <div class="row">
+        <div class="large-3 columns">
+          <h4><%= color_palette.name %></h4>
+        </div>        
+        <div class="large-5 large-offset-4 columns">
+        </div>
+        <hr />
+      </div>
+      <div class="row">
+        <%= color_swatch_for color_palette %>
+      </div>
+    </div>
+  </section>
+<% end %>
+</div>

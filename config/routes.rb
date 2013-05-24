@@ -12,4 +12,5 @@ Wallbase::Application.routes.draw do
 
   # Root path
   root :to => 'filters#index'
+  get '/color-pallete-chart' => 'filters#color_palettes', as: 'color_palette_chart'
 end
