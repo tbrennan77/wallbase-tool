@@ -52,7 +52,7 @@ class FiltersController < ApplicationController
     cookies[:wallbase_sample_skus] = {
       value: johnsonite_api_path.split(',').uniq.join(','), domain: '.johnsonite.com'
     }
-    flash.now[:notice] = "Added skus to sample cart!"
+    flash[:notice] = "Added skus to sample cart!"
     redirect_to root_path
   end
 
