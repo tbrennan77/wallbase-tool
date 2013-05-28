@@ -53,7 +53,7 @@ class FiltersController < ApplicationController
       value: johnsonite_api_path.split(',').uniq.join(','), domain: '.johnsonite.com'
     }
     flash.now[:notice] = "Added skus to sample cart!"
-    redirect_to root_path, :notice => "Foo"
+    redirect_to root_path
   end
 
   def color_palettes
