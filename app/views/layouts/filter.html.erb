@@ -45,14 +45,25 @@
   <link href="apple-touch-startup-image-1496x2048.png" media="(device-width: 1536px)  and (orientation: landscape) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image">
   <!-- END Apple Web App -->
 <!--<![endif]-->
-
+  <style>
+  .alert-box {
+    width: 400px;
+    margin: 0 auto;
+    top: 30%;
+    position: fixed;
+    z-index: 99999999;
+    text-align: center;
+    left: 45%;
+    padding: 38px;
+    background: #01a4d5 !important;
+    box-shadow: 0 1px 3px #AAA;
+    font-size: 18pt;
+  }
+  </style>
 </head>
   <body>
     <% if flash[:notice] %>
       <div class='alert-box success'><%= flash[:notice] %></div>
-    <% end %>
-    <% if flash[:error] %>
-      <div class='alert-box error'><%= flash[:error] %></div>
     <% end %>
 
     <div class="row">
