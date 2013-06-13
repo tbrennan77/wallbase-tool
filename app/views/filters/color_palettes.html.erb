@@ -23,9 +23,22 @@
 }
 </style>
 
+<script>
+$('#palette-select').live('change', function() {
+  var cp = $(this).val();  
+  $(".title").each(function() {
+    if($(this).text().trim()==cp)
+      $(this).click();
+  });
+});
+</script>
+
 <h3 class="left subheader">List of Color Palettes</h3>
 <%= link_to "« back to filter", root_path, class: 'back-to-filter right small button secondary' %>
 <hr />
+<br />
+
+<%= select_tag :color_palette, options_for_select( @color_palettes.map { |cp| cp.name } ), id: 'palette-select', class: 'show-for-small' %>
 <br />
 
 <div class="section-container tabs" data-section>
@@ -36,7 +49,7 @@
     <section class="section">
   <% end %>
 
-    <div class="title" style="width: 11%">        
+    <div class="title hide-for-small" style="width: 11%">        
       <h5 style="text-align: center"><%= color_palette.name %></h5>        
     </div>
 
