@@ -17,6 +17,8 @@ namespace :bw do
       puts "Removing backup... b#{capture_number[0..2]}"
       delete_results = %x{`heroku pgbackups:destroy b#{capture_number[0..2]}`}
       puts delete_results
+      puts "Cleaning up backups..."
+      %x{ls -1dt db/backups/* | tail -n +6 |  xargs rm -rf}
     end
 
     desc "Download latest backup url"
