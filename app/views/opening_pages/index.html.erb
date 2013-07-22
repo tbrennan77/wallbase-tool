@@ -1,0 +1,26 @@
+<script>
+$(document).ready( function() {
+  $('#preview-link').live('click', function() {
+    $('#preview').html($('#opening_page_body').val());
+  });
+});
+</script>
+
+<div class='large-4 columns'>
+<h2 class="left">Home page</h2>
+<hr />
+<%= form_for @opening_page do |f| %>
+  <%= f.text_area :body, style: 'height: 300px' %>
+  <%= f.submit "Update Home Page", class: 'small nice button' %>
+  <%= link_to 'preview', 'javascript:void(0)', id: 'preview-link', class: 'tiny button success right' %>
+<% end %>
+</div>
+
+<div class='large-8 columns'>
+<h2 class="left">Preview</h2>
+<hr />
+
+<div id='preview'>
+  <%= @opening_page.body.html_safe %>
+</div>
+</div>

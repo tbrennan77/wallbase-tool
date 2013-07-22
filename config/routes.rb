@@ -1,4 +1,6 @@
 Wallbase::Application.routes.draw do
+  resources :opening_pages
+
   # Main resources
   resources :collections
   resources :collection_sections
