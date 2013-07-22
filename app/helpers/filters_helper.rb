@@ -16,6 +16,22 @@ module FiltersHelper
     end
   end
 
+  def nice_checkbox_palette_name_for(color_palette)
+    if color_palette.name == 'Selects'
+      '<span class="color-palette round color-palette-Selects" style=""></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Selects Palette'.html_safe
+    elsif color_palette.name == 'W'
+      '&nbsp;<span class="color-palette round color-palette-W" style="left:20px !important">W</span> Wall Art'.html_safe
+    elsif color_palette.name == 'Wood'
+      'Wood Patterns'
+    elsif color_palette.name == 'Stone'
+      'Stone Patterns'
+    elsif color_palette.name == 'Wall Art'
+      'Wall Art Patterns'
+    else
+      "&nbsp;<span class='color-palette round color-palette-#{color_palette.name}'>#{color_palette.name}</span> Palette #{color_palette.name}".html_safe
+    end
+  end
+
   def colors_for(color_palette)
     list_items = ""
     if color_palette.name == "Selects"            
