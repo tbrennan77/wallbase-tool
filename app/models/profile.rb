@@ -1,6 +1,8 @@
 class Profile < ActiveRecord::Base
   attr_accessible :style_type_id, :uuid, :size, :color_palette_ids
+  
   validates_presence_of :style_type_id, :uuid, :size
+  
   belongs_to :style_type
   has_one :collection, through: :style_type, dependent: :destroy
   has_many :profile_color_palettes, dependent: :destroy
