@@ -1,8 +1,10 @@
 <% if params[:profile_id].present? %>
   $(".ajax-container.details").html("<%= escape_javascript(render("details")) %>");
   $(window).trigger("resize");
+  $('#filter-form').fadeTo('slow', 0.2);
 <% else %>
   $(".ajax-container.results").html("<%= escape_javascript(render("results")) %>");
   $('select').hide();
-  $.ajax({complete: function () {$(document).foundation();}});  
+  $.ajax({complete: function () {$(document).foundation();}});
+  $('#filter-form').fadeTo('slow', 1);
 <% end %>
