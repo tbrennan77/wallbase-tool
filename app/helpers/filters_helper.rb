@@ -6,11 +6,11 @@ module FiltersHelper
     elsif color_palette.name == 'W'
       'Wall Art'
     elsif color_palette.name == 'Wood'
-      'Wood Patterns'
+      'Wood Patterns (Masquerade)'
     elsif color_palette.name == 'Stone'
       'Stone Patterns (Masquerade)'
     elsif color_palette.name == 'Wall Art'
-      'Wall Art Patterns (Masquerade)'
+      'Wall Art Patterns'
     else
       "Palette #{color_palette.name}"
     end
@@ -22,11 +22,11 @@ module FiltersHelper
     elsif color_palette.name == 'W'
       '&nbsp;<span class="color-palette round color-palette-W" style="left:20px !important">W</span> Wall Art'.html_safe
     elsif color_palette.name == 'Wood'
-      'Wood Patterns'
+      'Wood Patterns (Masquerade)'
     elsif color_palette.name == 'Stone'
       'Stone Patterns (Masquerade)'
     elsif color_palette.name == 'Wall Art'
-      'Wall Art Patterns (Masquerade)'
+      'Wall Art Patterns'
     else
       "&nbsp;<span class='color-palette round color-palette-#{color_palette.name}'>#{color_palette.name}</span> Palette #{color_palette.name}".html_safe
     end
