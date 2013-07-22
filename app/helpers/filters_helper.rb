@@ -8,9 +8,9 @@ module FiltersHelper
     elsif color_palette.name == 'Wood'
       'Wood Patterns'
     elsif color_palette.name == 'Stone'
-      'Stone Patterns'
+      'Stone Patterns (Masquerade)'
     elsif color_palette.name == 'Wall Art'
-      'Wall Art Patterns'
+      'Wall Art Patterns (Masquerade)'
     else
       "Palette #{color_palette.name}"
     end
@@ -24,9 +24,9 @@ module FiltersHelper
     elsif color_palette.name == 'Wood'
       'Wood Patterns'
     elsif color_palette.name == 'Stone'
-      'Stone Patterns'
+      'Stone Patterns (Masquerade)'
     elsif color_palette.name == 'Wall Art'
-      'Wall Art Patterns'
+      'Wall Art Patterns (Masquerade)'
     else
       "&nbsp;<span class='color-palette round color-palette-#{color_palette.name}'>#{color_palette.name}</span> Palette #{color_palette.name}".html_safe
     end
@@ -168,5 +168,18 @@ module FiltersHelper
     end
 
     divs.html_safe
+  end
+
+  def color_name_with_text(color_name)
+    case color_name
+    when 'Wood'
+      'Wood Patterns (Masquerade)'
+    when 'Stone'
+      'Stone Patterns (Masquerade)'
+    when 'Wall Art'
+      color_name
+    else
+      color_name.gsub(/$W/, "Wall Art")
+    end
   end
 end
