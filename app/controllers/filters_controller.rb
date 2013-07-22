@@ -38,7 +38,7 @@ class FiltersController < ApplicationController
       end
     end
 
-    @style_types = style_type_filter.limit(8)
+    @style_types = style_type_filter.limit(30)
   end
 
   def samplecart    
