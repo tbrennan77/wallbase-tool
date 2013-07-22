@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130611202252) do
+ActiveRecord::Schema.define(:version => 20130722185116) do
 
   create_table "collection_sections", :force => true do |t|
     t.integer  "collection_id"
@@ -50,6 +50,12 @@ ActiveRecord::Schema.define(:version => 20130611202252) do
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
     t.boolean  "selects"
+  end
+
+  create_table "opening_pages", :force => true do |t|
+    t.text     "body"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "profile_color_palettes", :id => false, :force => true do |t|
