@@ -37,6 +37,8 @@ $(document).ready(function() {
   $(document).foundation();
   
   $("#loading").hide();  
-
+  $('form').live('change', function() {
+    $('#header-row').fadeIn();
+  });
 });
 $(document).foundation();

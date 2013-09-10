@@ -21,8 +21,14 @@
   </div>
 
   <div class="result-parent animated large-8 columns">
-    <h4>WALLBASE</h4>
-    <div id="results" class="ajax-container results">
+    <div id="header-row" class="row hide">
+      <div class="large-6 columns"><h4>WALLBASE</h4></div>
+      <div class="large-6 columns">
+        <div class="large-4 columns"><h5>SKU</h5></div>
+        <div class="large-8 columns"><h5>Color Palettes</h5></div>
+      </div>
+    </div>
+    <div id="results" class="ajax-container results">      
       <%= OpeningPage.first.body.html_safe %>
     </div>
   </div>
