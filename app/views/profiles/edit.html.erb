@@ -11,6 +11,12 @@
   <%= f.text_field :uuid, placeholder: "MW-XX-C" %>
   <%= f.text_field :size, placeholder: "2\"" %>
   
+  <%= f.label :profile_image %><br />
+  <%= f.file_field :profile_image %><br />
+  <br />
+  <%= f.label :corner_image %><br />
+  <%= f.file_field :corner_image %><br />
+  
   <fieldset>
     <legend>Choose Palettes:</legend>
       <% ColorPalette.order(:name).each do |cp| %>
