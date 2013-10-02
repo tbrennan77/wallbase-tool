@@ -8,15 +8,28 @@
   <%= f.select :style_type_id, StyleType.all.map {|st| [st.name, st.id]}, :selected => @profile.style_type_id %>
   <br />
   <br />
-  <%= f.text_field :uuid, placeholder: "MW-XX-C" %>
-  <%= f.text_field :size, placeholder: "2\"" %>
-  
-  <%= f.label :profile_image %><br />
-  <%= f.file_field :profile_image %><br />
-  <br />
-  <%= f.label :corner_image %><br />
-  <%= f.file_field :corner_image %><br />
-  
+  <div class='row'>
+    <div class='large-6 columns'>
+      <%= f.text_field :uuid, placeholder: "MW-XX-C" %>
+      <%= f.text_field :size, placeholder: "2\"" %>
+      
+      <%= f.label :profile_image %><br />
+      <%= f.file_field :profile_image %><br />
+      <br />
+      <%= f.label :corner_image %><br />
+      <%= f.file_field :corner_image %><br />
+    </div>
+    <div class='large-6 columns'>
+      Current Profile Image:<br />
+      <%= image_tag @profile.profile_image_url %>
+
+      <br />
+      Current Corner Image:<br />
+      <%= image_tag @profile.corner_image_url %>
+    </div>
+      
+  </div>
+
   <fieldset>
     <legend>Choose Palettes:</legend>
       <% ColorPalette.order(:name).each do |cp| %>

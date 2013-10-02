@@ -13,6 +13,14 @@ class Profile < ActiveRecord::Base
 
   scope :ordered, order("id")
 
+  def profile_image_url
+    self.profile_image.blank? "missing.jpg" : self.profile_image.url
+  end
+
+  def corner_image_url
+    self.corner_image.blank? "missing.jpg" : self.corner_image.url
+  end
+
   def name
     self.uuid
   end
