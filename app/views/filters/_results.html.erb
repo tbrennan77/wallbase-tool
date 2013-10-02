@@ -3,7 +3,7 @@
   <% @style_types.each do |style_type| %>
     <div class='row'>
       <div class="animated fadeInLeft large-6 columns">        
-        <%= image_for_results style_type %>
+        <%= image_tag style_type.profiles.first.profile_image_url, class: "left has-tip result-profile-image", title: "Choose a profile from the dropdown to see more details!", data: {tooltip:  ''} %>
         <ul class="left">
           <li class="name"><b><%= style_type.name.upcase %> (<%= style_type.collection.material.upcase %>)</b></li>      
           <li><%= style_type.collection.name %></li>
