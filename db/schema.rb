@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130722185116) do
+ActiveRecord::Schema.define(:version => 20131002162325) do
 
   create_table "collection_sections", :force => true do |t|
     t.integer  "collection_id"
@@ -68,8 +68,16 @@ ActiveRecord::Schema.define(:version => 20130722185116) do
     t.float    "size"
     t.string   "name"
     t.string   "uuid"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
+    t.string   "profile_image_file_name"
+    t.string   "profile_image_content_type"
+    t.integer  "profile_image_file_size"
+    t.datetime "profile_image_updated_at"
+    t.string   "corner_image_file_name"
+    t.string   "corner_image_content_type"
+    t.integer  "corner_image_file_size"
+    t.datetime "corner_image_updated_at"
   end
 
   create_table "style_types", :force => true do |t|
