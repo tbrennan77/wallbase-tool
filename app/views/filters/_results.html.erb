@@ -4,7 +4,7 @@
     <div class='row'>
       <div class="animated fadeInLeft large-6 columns">        
         <%= image_tag style_type.profiles.first.profile_image_url, class: "left has-tip result-profile-image", title: "Choose a profile from the dropdown to see more details!", data: {tooltip:  ''} %>
-        <ul class="left">
+        <ul class="left" style='max-width: 165px;'>
           <li class="name"><b><%= style_type.name.upcase %> (<%= style_type.collection.material.upcase %>)</b></li>      
           <li><%= style_type.collection.name %></li>
           <li style="margin-top: 30px;">
