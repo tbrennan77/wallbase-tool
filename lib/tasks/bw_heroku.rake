@@ -7,15 +7,15 @@ namespace :bw do
     desc "Create a backup on heroku"
     task :create => :environment do
       puts "Creating backup url.."
-      capture = %x{heroku pgbackups:capture}
+      capture = %x{heroku pgbackups:capture --app johnsonite-wallbase}
       capture_number = capture.gsub /[^\d\d\d]/, ''
       print "Created URL at: "
-      %x{`heroku pgbackups:url`}
+      %x{`heroku pgbackups:url  --app johnsonite-wallbase`}
       puts "\n"
       puts "Downloading latest backup url..."
-      %x{curl -o db/backups/#{DateTime.now.strftime("%Y%m%d%H%M%S")}.dump `heroku pgbackups:url`}
+      %x{curl -o db/backups/#{DateTime.now.strftime("%Y%m%d%H%M%S")}.dump `heroku pgbackups:url  --app johnsonite-wallbase`}
       puts "Removing backup... b#{capture_number[0..2]}"
-      delete_results = %x{`heroku pgbackups:destroy b#{capture_number[0..2]}`}
+      delete_results = %x{`heroku pgbackups:destroy b#{capture_number[0..2]}  --app johnsonite-wallbase`}
       puts delete_results
       puts "Cleaning up backups..."
       %x{ls -1dt db/backups/* | tail -n +6 |  xargs rm -rf}
