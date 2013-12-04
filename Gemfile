@@ -6,7 +6,7 @@ gem 'pg'
 gem 'dynamic_form'
 gem 'modernizr-rails'
 gem 'jquery-rails'
-gem "animate-rails"
+gem "animate-rails", '~> 0.0.4'
 gem 'paperclip'
 gem 'aws-sdk'
 
