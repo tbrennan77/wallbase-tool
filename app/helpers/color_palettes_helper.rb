@@ -1,5 +1,5 @@
 module ColorPalettesHelper  
-  def color_swatch_for(color_palette)
+  def admin_color_swatch_for(color_palette)
     divs = ""
     if color_palette.name.downcase == "selects"            
       Color.where(:selects => true).order(:color_number).each do |color|
