@@ -9,6 +9,7 @@ module ApplicationHelper
     else
       "#{color_number.to_i}"
     end    
+    color_number
   end
 
   def link_to_add_fields(name, f, association, options={})
