@@ -4,12 +4,13 @@ module ApplicationHelper
   end
 
   def display_color_number(color_number)    
-    if color_number.to_i < 10
+    if color_number.to_i < 1
+      color_number
+    elsif color_number.to_i < 10
       "0#{color_number.to_i}"
     else
       "#{color_number.to_i}"
-    end    
-    color_number
+    end        
   end
 
   def link_to_add_fields(name, f, association, options={})
