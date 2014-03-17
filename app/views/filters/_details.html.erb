@@ -30,15 +30,26 @@
     <div class="row">
       <div class="large-12 columns">
         <div class="section-container tabs" data-section>
-          <% @profile.color_palettes.each do |c| %>  
-            <section class="section <%= c.id == @profile.color_palettes.first.id ? 'active' : '' %>">          
-              <p class="title" style="width: <%= @profile.color_palette_width_in_percent %>"><a href="#"><%= color_name_with_text c.name %></a></p>
-              <div class="content">                 
-                <ul>
-                  <%= colors_for c %>               
-                </ul>
-              </div>
-            </section>
+          <% @profile.color_palettes.each do |c| %>
+            <% unless color_name_with_text(c.name) == 'hide' %>
+              <section class="section <%= c.id == @profile.color_palettes.first.id ? 'active' : '' %>">          
+                <p class="title" style="width: <%= @profile.color_palette_width_in_percent %>"><a href="#"><%= color_name_with_text c.name %></a></p>
+                <div class="content">                 
+                  <%= '<p>Wood</p>'.html_safe if c.name == 'Wood' %>                  
+                  <ul>
+                    <%= colors_for c %>               
+                  </ul>
+                  <% if c.name == 'Wood' %>
+                    <p>Stone</p>
+                    <% @profile.color_palettes.where(name: 'Stone').each do |s| %>
+                      <ul>
+                        <%= colors_for s %>               
+                      </ul>
+                    <% end %>
+                  <% end %>
+                </div>
+              </section>
+            <% end %>
           <% end %>
         </div>
       </div>

@@ -22,9 +22,9 @@ module FiltersHelper
     elsif color_palette.name == 'W'
       '&nbsp;<span class="color-palette round color-palette-W" style="left:20px !important">W</span> Wall Art'.html_safe
     elsif color_palette.name == 'Wood'
-      'Wood Patterns (Masquerade)'
+      'Masquerade (Standard)'
     elsif color_palette.name == 'Stone'
-      'Stone Patterns (Masquerade)'
+      'hide'
     elsif color_palette.name == 'Wall Art'
       'Wall Art Patterns'
     else
@@ -173,9 +173,9 @@ module FiltersHelper
   def color_name_with_text(color_name)
     case color_name
     when 'Wood'
-      'Wood Patterns (Masquerade)'
+      'Masquerade (Standard)'
     when 'Stone'
-      'Stone Patterns (Masquerade)'
+      'hide'
     when 'Wall Art'
       color_name
     else
