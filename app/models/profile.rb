@@ -11,6 +11,9 @@ class Profile < ActiveRecord::Base
   has_attached_file :profile_image
   has_attached_file :corner_image
 
+  validates_attachment :profile_image, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png"] }
+  validates_attachment :corner_image, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png"] }
+
   scope :ordered, order("id")
 
   def profile_image_url
