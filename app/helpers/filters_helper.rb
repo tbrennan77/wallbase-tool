@@ -38,7 +38,7 @@ module FiltersHelper
       Color.where(selects: true).each do |color|
       list_items += "<li style='display:inline-block;margin: 0 8px; width: 50px;' class='has-tip' data-tooltip title='#{display_color_number color.color_number} #{color.name} #{color.color_foundation}'>               
             <label class='color-label' style='background: ##{color.hex}' data-color='#{color.hex}'>
-              <input type='checkbox' data-sku='#{@profile.uuid.gsub('XX', display_color_number(color.color_number))}' value='#{display_color_number color.color_number} #{color.name}' style='display:none'/>
+              <input type='checkbox' data-sku='#{@profile.uuid.gsub('XXX', display_color_number(color.color_number))}' value='#{display_color_number color.color_number} #{color.name}' style='display:none'/>
             </label>
           </li>"
       end
@@ -46,7 +46,7 @@ module FiltersHelper
       color_palette.colors.each do |color|
       list_items += "<li style='display:inline-block;margin: 0 8px; width: 50px;' class='has-tip' data-tooltip title='#{display_color_number color.color_number} #{color.name} #{color.color_foundation}'>               
           <label class='color-label' style='background: url(/assets/wallart/#{color.color_number}.jpg)' data-color='#{color.hex}'>
-            <input type='checkbox' data-sku='#{@profile.uuid.gsub('XX', color.color_number)}' value='#{color.color_number} #{color.name}' style='display:none'/>
+            <input type='checkbox' data-sku='#{@profile.uuid.gsub('XXX', color.color_number)}' value='#{color.color_number} #{color.name}' style='display:none'/>
           </label>
         </li>"
       end
@@ -54,7 +54,7 @@ module FiltersHelper
       color_palette.colors.each do |color|
       list_items += "<li style='display:inline-block;margin: 0 8px; width: 50px;' class='has-tip' data-tooltip title='#{display_color_number color.color_number} #{color.name} #{color.color_foundation}'>               
           <label class='color-label' style='background: url(/assets/wood/#{color.color_number}.jpg)' data-color='#{color.hex}'>
-            <input type='checkbox' data-sku='#{@profile.uuid.gsub('XX', display_color_number(color.color_number))}' value='#{display_color_number color.color_number} #{color.name}' style='display:none'/>
+            <input type='checkbox' data-sku='#{@profile.uuid.gsub('XXX', display_color_number(color.color_number))}' value='#{display_color_number color.color_number} #{color.name}' style='display:none'/>
           </label>
         </li>"
       end
@@ -62,7 +62,7 @@ module FiltersHelper
       color_palette.colors.each do |color|
       list_items += "<li style='display:inline-block;margin: 0 8px; width: 50px;' class='has-tip' data-tooltip title='#{color.color_number} #{color.name} #{color.color_foundation}'>               
           <label class='color-label' style='background: url(/assets/stone/#{color.color_number}.jpg)' data-color='#{color.hex}'>
-            <input type='checkbox' data-sku='#{@profile.uuid.gsub('XX', color.color_number)}' value='#{color.color_number} #{color.name}' style='display:none'/>
+            <input type='checkbox' data-sku='#{@profile.uuid.gsub('XXX', color.color_number)}' value='#{color.color_number} #{color.name}' style='display:none'/>
           </label>
         </li>"
       end
@@ -70,7 +70,7 @@ module FiltersHelper
       color_palette.colors.each do |color|
       list_items += "<li style='display:inline-block;margin: 0 8px; width: 50px;' class='has-tip' data-tooltip title='#{display_color_number color.color_number} #{color.name} #{color.color_foundation}'>               
           <label class='color-label' style='background: ##{color.hex}' data-color='#{color.hex}'>
-            <input type='checkbox' data-sku='#{@profile.uuid.gsub('XX', display_color_number(color.color_number))}' value='#{display_color_number color.color_number} #{color.name}' style='display:none'/>
+            <input type='checkbox' data-sku='#{@profile.uuid.gsub('XXX', display_color_number(color.color_number))}' value='#{display_color_number color.color_number} #{color.name}' style='display:none'/>
           </label>
         </li>"
       end
