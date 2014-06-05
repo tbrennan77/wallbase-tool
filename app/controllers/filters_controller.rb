@@ -5,28 +5,36 @@ class FiltersController < ApplicationController
     @collections = Collection.order(:name)
     @color_palettes = ColorPalette.ordered    
     
-    @profile = Profile.find params[:profile_id] if params[:profile_id].present?
+    if params[:profile_id].present?
+      @profile = Profile.includes(
+        :color_palettes,
+        :colors,
+        :style_type,
+        :collection,
+        :collection_sections
+        ).find(params[:profile_id])
+    end
 
     # begin filtering
-    style_type_filter = StyleType.scoped
+    style_type_filter = StyleType.includes(:collection, :profiles, :color_palettes).scoped
 
     # collections
     if params[:collection_id].present?
-      style_type_filter = style_type_filter.scoped conditions: ['collection_id = ?', params[:collection_id]]    
+      style_type_filter = style_type_filter.scoped(conditions: ['collection_id = ?', params[:collection_id]])
     end
 
     # styles
     if params[:style_type_name].present?
-      style_type_filter = style_type_filter.scoped conditions: ['style_types.name = ?', params[:style_type_name]]
+      style_type_filter = style_type_filter.scoped(conditions: ['style_types.name = ?', params[:style_type_name]])
     end
 
     # materials
     if params[:material].present?
-      style_type_filter = style_type_filter.scoped include: :collection, conditions: ['collections.material LIKE ?', params[:material]]
+      style_type_filter = style_type_filter.scoped(conditions: ['collections.material LIKE ?', params[:material]])
     end
 
     # color palettes
-    if params[:color_palette_ids].present?
+    if params[:color_palette_ids].present?      
       params[:color_palette_ids].each do |cpid|
         sql = <<-END_SQL
           EXISTS ( SELECT 1
@@ -34,7 +42,8 @@ class FiltersController < ApplicationController
                    WHERE profile_id = profiles.id                   
                    AND color_palette_id = ?)
         END_SQL
-        style_type_filter = style_type_filter.scoped include: :profiles, conditions: [sql, cpid]
+
+        style_type_filter = style_type_filter.scoped(conditions: [sql, cpid])      
       end
     end
 

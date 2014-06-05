@@ -1,18 +1,24 @@
 class Profile < ActiveRecord::Base
+  SKU_REGEX = /\A[A-Z]{1,4}-[X]{3}-[A-Z0-9]{1,4}\z/
+
   attr_accessible :style_type_id, :uuid, :size, :color_palette_ids, :profile_image, :corner_image
   
   validates_presence_of :style_type_id, :uuid, :size
   
   belongs_to :style_type
   has_one :collection, through: :style_type, dependent: :destroy
+  has_many :collection_sections, through: :collection
   has_many :profile_color_palettes, dependent: :destroy
   has_many :color_palettes, through: :profile_color_palettes, dependent: :destroy
+  has_many :colors, through: :color_palettes, dependent: :destroy
 
   has_attached_file :profile_image
   has_attached_file :corner_image
+  
+  do_not_validate_attachment_file_type :corner_image
+  do_not_validate_attachment_file_type :profile_image
 
-  validates_attachment :profile_image, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png"] }
-  validates_attachment :corner_image, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png"] }
+  validates_format_of :uuid, with: SKU_REGEX, message: 'is in the wrong format. Do not mess with skus, they are powerful. They directly affect the sample cart. They should look like: CC-XXX-4'
 
   scope :ordered, order("id")
 
