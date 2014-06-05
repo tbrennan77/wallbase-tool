@@ -54,7 +54,7 @@ class FiltersController < ApplicationController
       domain: '.johnsonite.com'
     }
     flash[:notice] = "Added skus to sample cart!"
-    render text: '<script>GoToCart()</script>'
+    render text: '<script>parent.GoToCart()</script>'
   end
 
   def color_palettes
