@@ -54,7 +54,7 @@ class FiltersController < ApplicationController
       domain: '.johnsonite.com'
     }
     flash[:notice] = "Added skus to sample cart!"
-    redirect_to root_path
+    render js: 'GoToCart()'
   end
 
   def color_palettes
