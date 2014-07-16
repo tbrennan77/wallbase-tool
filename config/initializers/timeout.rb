@@ -1,0 +1,1 @@
+Rack::Timeout.timeout = 10  # seconds, Unicorn set to 15 -> config/unicorn.rb
