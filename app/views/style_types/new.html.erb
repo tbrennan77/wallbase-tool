@@ -8,5 +8,8 @@
   <%= f.label :name %>
   <%= f.text_field :name, placeholder: "Style Type Name" %>
   
+  <%= f.label :material %>
+  <%= f.text_field :material, placeholder: "Material" %>
+  
   <%= f.submit "Create style type", class: 'small success button' %> <%= link_to "Cancel", collection_path(params[:collection_id]), class: 'small alert button' %>
 <% end %>

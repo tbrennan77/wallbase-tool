@@ -2,8 +2,7 @@
 <hr />
 <%= form_for @collection do |f| %>
   <%= f.error_messages %>
-  <%= f.text_field :name, placeholder: "Collection Name" %>
-  <%= f.text_field :material, placeholder: "Material Name (Rubber)" %>
+  <%= f.text_field :name, placeholder: "Collection Name" %>  
   <%= f.text_area :collection_description, placeholder: "Type description here." %>
 
   <ul id="spec-image-list" class="large-block-grid-5">

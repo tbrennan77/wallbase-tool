@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131002162325) do
+ActiveRecord::Schema.define(:version => 20140722211509) do
 
   create_table "collection_sections", :force => true do |t|
     t.integer  "collection_id"
@@ -25,7 +25,6 @@ ActiveRecord::Schema.define(:version => 20131002162325) do
     t.string   "name"
     t.datetime "created_at",             :null => false
     t.datetime "updated_at",             :null => false
-    t.string   "material"
     t.boolean  "icon_1"
     t.boolean  "icon_2"
     t.boolean  "icon_3"
@@ -83,8 +82,9 @@ ActiveRecord::Schema.define(:version => 20131002162325) do
   create_table "style_types", :force => true do |t|
     t.string   "name"
     t.integer  "collection_id"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+    t.string   "material",      :default => "", :null => false
   end
 
 end
