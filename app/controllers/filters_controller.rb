@@ -47,7 +47,7 @@ class FiltersController < ApplicationController
       end
     end
 
-    @style_types = style_type_filter.limit(30)
+    @style_types = style_type_filter.order('style_types.collection_id').limit(30)
   end
 
   def samplecart    
