@@ -30,7 +30,7 @@ class FiltersController < ApplicationController
 
     # materials
     if params[:material].present?
-      style_type_filter = style_type_filter.scoped(conditions: ['collections.material LIKE ?', params[:material]])
+      style_type_filter = style_type_filter.scoped(conditions: ['style_types.material LIKE ?', "%#{params[:material]}"])
     end
 
     # color palettes
