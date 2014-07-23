@@ -3,8 +3,8 @@
 <hr />
 
 <div class="large-4 columns">
-<%= link_to "Add Collection", new_collection_path, class: 'success button expand' %>
+<%= link_to "+ Add Collection", new_collection_path, class: 'success button radius expand' %>
 <% @collections.each do |c| %>
-  <%= link_to c.name, collection_path(c), class: 'button expand' %><br />
+  <%= link_to c.name, collection_path(c), class: 'button radius expand' %><br />
 <% end %>
 </div>

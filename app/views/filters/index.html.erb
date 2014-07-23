@@ -5,6 +5,7 @@
     <div id="search" class="ajax-container search">
       <%= render 'search' %>
     </div>
+    <% cache do %>
     <div class='color-legend'>      
       <% ColorPalette.labels.each do |cp| %>
       <div class='row'>
@@ -18,8 +19,10 @@
       <br />
       <% end %>
     </div>
+    <% end %>
   </div>
 
+  <% cache([OpeningPage.first]) do %>
   <div class="result-parent animated large-8 columns">
     <div id="header-row" class="row hide">
       <div class="large-6 columns"><h4>WALLBASE</h4></div>
@@ -36,4 +39,5 @@
   <div class="single-parent large-8 columns animated">
     <div id="details" class="ajax-container details"></div>
   </div>
+  <% end %>
 </div>

@@ -4,7 +4,9 @@ class FiltersController < ApplicationController
   def index
     @collections = Collection.order(:name)
     @color_palettes = ColorPalette.ordered    
-    
+    @style_names = StyleType.select('distinct name').order(:name).map {|st| [st.name]}
+    @materials = StyleType.select('distinct material').where("material != ''").order(:material).map {|st| [st.material]}
+
     if params[:profile_id].present?
       @profile = Profile.includes(
         :color_palettes,
