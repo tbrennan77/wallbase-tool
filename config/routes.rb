@@ -10,9 +10,10 @@ Wallbase::Application.routes.draw do
   resources :color_palettes, :path => "color-palettes"
 
   # Johnsonite API routes
-  match '/samplecart' => 'filters#samplecart', as: 'sample_cart'
+  match '/samplecart' => 'filters#samplecart', as: 'sample_cart', via: [:get, :post]
 
   # Root path
   root :to => 'filters#index'
+  post '/' => 'filters#index'
   get '/color-pallete-chart' => 'filters#color_palettes', as: 'color_palette_chart'
 end

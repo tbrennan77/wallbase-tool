@@ -1,34 +1,34 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.17'
+gem 'rails', '4.1.4'
 
 gem 'dalli'
 gem 'pg'
 gem 'dynamic_form'
 gem 'modernizr-rails'
 gem 'jquery-rails'
+gem 'jbuilder', '~> 1.2'
 gem 'animate-rails', '~> 0.0.4'
 gem 'paperclip'
-gem 'aws-sdk', '~> 1.11.1'
 gem 'unicorn'
 
-# Gems used only for assets and not required
-# in production environments by default.
-group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
-  gem 'uglifier', '~> 2.1.2'
+# Assets
+gem 'sass-rails', '~> 4.0.0'
+gem 'uglifier', '>= 1.3.0'
+gem 'coffee-rails', '~> 4.0.0'
+# Add foundation ehre
+gem 'compass-rails'
+gem 'zurb-foundation', '~> 4.0.0'
 
-  # Add foundation ehre
-  gem 'compass-rails'
-  gem 'zurb-foundation', '~> 4.0.0'
+group :production do
+  gem 'rails_12factor'
+  gem 'aws-sdk', '~> 1.11.1'
 end
 
-group :test, :development do
+group :test do
   gem 'factory_girl'
-  gem 'rspec-rails'
-  gem 'capybara'
-  gem 'accept_values_for'
-  gem 'guard-rspec'
-  gem 'growl'
+  gem 'rspec-rails', '2.13.1'
+  gem 'shoulda-matchers'
+  gem 'selenium-webdriver', '~> 2.35.1'
+  gem 'capybara', '2.1.0'
 end

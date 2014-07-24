@@ -18,7 +18,7 @@ class CollectionsController < ApplicationController
   end
 
   def create
-    @collection = Collection.new params[:collection]
+    @collection = Collection.new(collection_params)
     if @collection.save
       redirect_to collection_path(@collection), notice: 'Create Collection'
     else
@@ -29,7 +29,7 @@ class CollectionsController < ApplicationController
   def update
     @collection = Collection.find params[:id]
 
-    if @collection.update_attributes params[:collection]
+    if @collection.update_attributes(collection_params)
       redirect_to collection_path(@collection), notice: 'Updated Collection'
     else
       render :edit
@@ -41,5 +41,19 @@ class CollectionsController < ApplicationController
     colleciton.destroy
     flash[:error] = "Deleted Collection"
     redirect_to collections_path
+  end
+
+  private
+
+  def collection_params
+    params.require(:collection).permit(
+      :name,
+      :collection_description,
+      :icon_1,
+      :icon_2,
+      :icon_3,
+      :icon_4,
+      :icon_5,
+      collection_sections_attributes: [:title, :body, :_destroy])
   end
 end

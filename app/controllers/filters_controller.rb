@@ -2,37 +2,35 @@ class FiltersController < ApplicationController
   layout 'filter'
 
   def index
-    @collections = Collection.order(:name)
+    @collections    = Collection.order(:name)
     @color_palettes = ColorPalette.ordered    
-    @style_names = StyleType.select('distinct name').order(:name).map {|st| [st.name]}
-    @materials = StyleType.select('distinct material').where("material != ''").order(:material).map {|st| [st.material]}
+    @style_names    = StyleType.select('distinct name').order(:name).map {|st| [st.name]}
+    @materials      = StyleType.select('distinct material').where("material != ''").order(:material).map {|m| [m.material]}
 
     if params[:profile_id].present?
-      @profile = Profile.includes(
-        :color_palettes,
-        :colors,
+      @profile = Profile.includes(        
         :style_type,
         :collection,
-        :collection_sections
-        ).find(params[:profile_id])
+        :collection_sections)
+        .find(params[:profile_id])
     end
 
     # begin filtering
-    style_type_filter = StyleType.includes(:collection, :profiles, :color_palettes).scoped
+    style_type_filter = StyleType.includes(:collection, :profiles).joins(:profiles)
 
     # collections
     if params[:collection_id].present?
-      style_type_filter = style_type_filter.scoped(conditions: ['collection_id = ?', params[:collection_id]])
+      style_type_filter = style_type_filter.where('collection_id = ?', params[:collection_id])
     end
 
     # styles
     if params[:style_type_name].present?
-      style_type_filter = style_type_filter.scoped(conditions: ['style_types.name = ?', params[:style_type_name]])
+      style_type_filter = style_type_filter.where('style_types.name = ?', params[:style_type_name])
     end
 
     # materials
     if params[:material].present?
-      style_type_filter = style_type_filter.scoped(conditions: ['style_types.material LIKE ?', "%#{params[:material]}"])
+      style_type_filter = style_type_filter.where('style_types.material LIKE ?', "%#{params[:material]}")
     end
 
     # color palettes
@@ -45,7 +43,7 @@ class FiltersController < ApplicationController
                    AND color_palette_id = ?)
         END_SQL
 
-        style_type_filter = style_type_filter.scoped(conditions: [sql, cpid])      
+        style_type_filter = style_type_filter.where(sql, cpid.to_i)      
       end
     end
 

@@ -10,7 +10,7 @@ class ProfilesController < ApplicationController
   end
 
   def create
-    @profile = Profile.new params[:profile]
+    @profile = Profile.new(profile_params)
     @profile.style_type_id
     if @profile.save
       redirect_to collection_path(@profile.collection), notice: 'Created Profile'
@@ -22,7 +22,7 @@ class ProfilesController < ApplicationController
   def update
     @profile = Profile.find params[:id]
 
-    if @profile.update_attributes params[:profile]
+    if @profile.update_attributes(profile_params)
       redirect_to collection_path(@profile.collection), notice: 'Updated Profile'
     else
       render :edit
@@ -34,5 +34,17 @@ class ProfilesController < ApplicationController
     profile.destroy
     flash[:error] = "Deleted Profile"
     redirect_to collections_path
+  end
+
+  private
+
+  def profile_params
+    params.require(:profile).permit(
+      :style_type_id,
+      :profile_image,
+      :corner_image,      
+      :size,
+      :uuid,
+      color_palette_ids: [])
   end
 end

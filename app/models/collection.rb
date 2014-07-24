@@ -1,6 +1,4 @@
-class Collection < ActiveRecord::Base
-  attr_accessible :name, :collection_description, :icon_1, :icon_2, :icon_3, :icon_4, :icon_5
-  
+class Collection < ActiveRecord::Base  
   validates_presence_of :name
   
   has_many :style_types, dependent: :destroy

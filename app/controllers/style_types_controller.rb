@@ -14,7 +14,7 @@ class StyleTypesController < ApplicationController
   end
 
   def create
-    @style_type = StyleType.new params[:style_type]
+    @style_type = StyleType.new(style_type_params)
     if @style_type.save
       redirect_to collection_path(@style_type.collection), notice: 'Create Style Type'
     else
@@ -25,7 +25,7 @@ class StyleTypesController < ApplicationController
   def update
     @style_type = StyleType.find params[:id]
 
-    if @style_type.update_attributes params[:style_type]
+    if @style_type.update_attributes(style_type_params)
       redirect_to collection_path(@style_type.collection), notice: 'Updated Style Type'
     else
       render :edit
@@ -37,5 +37,11 @@ class StyleTypesController < ApplicationController
     style_type.destroy
     flash[:error] = "Deleted Style Type"
     redirect_to collections_path
+  end
+
+  private
+
+  def style_type_params
+    params.require(:style_type).permit(:collection_id, :name, :material)
   end
 end

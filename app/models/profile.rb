@@ -1,8 +1,6 @@
 class Profile < ActiveRecord::Base
   SKU_REGEX = /\A[A-Z]{1,4}-[X]{3}-[A-Z0-9]{1,4}\z/
 
-  attr_accessible :style_type_id, :uuid, :size, :color_palette_ids, :profile_image, :corner_image
-  
   validates_presence_of :style_type_id, :uuid, :size
   
   belongs_to :style_type
@@ -20,7 +18,7 @@ class Profile < ActiveRecord::Base
 
   validates_format_of :uuid, with: SKU_REGEX, message: 'is in the wrong format. Do not mess with skus, they are powerful. They directly affect the sample cart. They should look like: CC-XXX-4'
 
-  scope :ordered, order("id")
+  scope :ordered, -> { order("id") }
 
   def profile_image_url
     self.profile_image.blank? ? "missing.jpg" : self.profile_image.url
