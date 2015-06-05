@@ -39,6 +39,9 @@ $ ->
       $('#addLink').attr("disabled", "disabled")
     else
       $('#addLink').removeAttr("disabled")
+  $('li.has-tip').on 'touchend', ->
+    color_box = $(this).find('input')
+    $(color_box).click()
 
   $('label.color-label').live 'change', ->
     count      = $('#selectedColors').children().length-1
