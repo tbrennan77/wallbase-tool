@@ -39,7 +39,8 @@ $ ->
       $('#addLink').attr("disabled", "disabled")
     else
       $('#addLink').removeAttr("disabled")
-  $('li.has-tip').on 'touchend', ->
+
+  $('li.has-tip').on 'touchstart', ->
     color_box = $(this).find('input')
     $(color_box).click()
 
