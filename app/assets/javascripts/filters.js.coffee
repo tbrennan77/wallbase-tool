@@ -40,9 +40,13 @@ $ ->
     else
       $('#addLink').removeAttr("disabled")
 
-  $('li.has-tip').on 'touchstart', ->
-    color_box = $(this).find('input')
-    $(color_box).click()
+  $(document).on 'touchstart', 'li.has-tip', ->
+    color_input = $(this).find('input')
+    if color_input.prop('checked')
+      color_input.prop('checked', false)
+    else
+      color_input.prop('checked', true)
+    color_input.trigger('change')
 
   $('label.color-label').live 'change', ->
     count      = $('#selectedColors').children().length-1
